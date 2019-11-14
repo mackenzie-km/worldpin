@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react'
 import CanvasTitle from '../components/canvas/CanvasTitle.js';
+import CanvasBackground from '../components/canvas/CanvasBackground.js';
 
 class CanvasContainer extends PureComponent {
   render() {
     return (
-      <header className="canvas-title">
-        <CanvasTitle title={"gold sg"} id={1} />
-      </header>
+      <div>
+          <CanvasTitle title={"gold sg"} id={1} />
+          <CanvasBackground />
+      </div>
     )
   }
 }
