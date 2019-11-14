@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-image: url('./worldpin_canvas_background.png');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .App-logo {
