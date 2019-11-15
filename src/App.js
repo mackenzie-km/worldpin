@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import CanvasContainer from './containers/CanvasContainer.js';
 import './App.css';
 

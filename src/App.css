@@ -21,9 +21,11 @@
 }
 
 h1 {
+  color: #43374d;
   font-family: 'Raleway', serif;
   max-height: 5vh;
   display: inline;
+  border-bottom: 3px double #43374d;
 }
 
 header.canvas-title {
