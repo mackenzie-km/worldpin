@@ -3,8 +3,7 @@ import defaultMap from '../../worldpin_canvas_map.png';
 
 const CanvasMap = (props) => {
   return (
-    <div className="canvas-map">
-      <img src={props.url || defaultMap } />
+    <div className="canvas-map" style={{ backgroundImage: `url(${props.url || defaultMap})` }}>
     </div>
   )
 }

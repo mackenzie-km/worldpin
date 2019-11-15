@@ -1,25 +1,43 @@
 .App {
-  text-align: center;
   background-image: url('./worldpin_canvas_background.png');
   background-repeat: no-repeat;
-  background-position: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: contain;
+  margin: 0px;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
 }
 
 .App-link {
   color: #09d3ac;
+}
+
+.canvas-container {
+  text-align: center;
+  height: inherit;
+  width: inherit;
+}
+
+h1 {
+  font-family: 'Raleway', serif;
+  max-height: 5vh;
+  display: inline;
+}
+
+header.canvas-title {
+  font-size: 1.5vw;
+  width: inherit;
+  max-height: 5vh;
+}
+
+.canvas-map {
+  margin: auto;
+  height: 95vh;
+  width: inherit;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: contain;
 }

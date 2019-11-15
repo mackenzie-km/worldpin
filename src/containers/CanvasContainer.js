@@ -5,9 +5,9 @@ import CanvasMap from '../components/canvas/CanvasMap.js';
 class CanvasContainer extends PureComponent {
   render() {
     return (
-      <div>
-          <CanvasTitle title={"gold sg"} id={1} />
-          <CanvasMap />
+      <div class="canvas-container">
+          <CanvasTitle title={"ten characters"} id={11111} />
+          <CanvasMap url={null} />
       </div>
     )
   }
