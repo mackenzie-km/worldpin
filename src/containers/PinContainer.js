@@ -1,18 +1,37 @@
 import React, { PureComponent } from 'react'
-import CanvasTitle from '../components/canvas/CanvasTitle.js';
-import CanvasMap from '../components/canvas/CanvasMap.js';
 import PinInput from '../components/pins/PinInput.js';
+import PinControls from '../components/pins/PinControls.js';
 
-class CanvasContainer extends PureComponent {
+class PinContainer extends PureComponent {
+
+addPin = (event) => {
+  event.preventDefault();
+  console.log("add")
+}
+
+editPin = (event) => {
+  event.preventDefault();
+  console.log("edit")
+}
+
+deletePin = (event) => {
+  event.preventDefault();
+  console.log("delete")
+}
+
+viewPins = (event) => {
+  event.preventDefault();
+  console.log("view")
+}
+
   render() {
     return (
-      <div className="canvas-container">
-          <CanvasTitle title={"ten characters"} id={11111} />
-          <CanvasMap url={null} />
+      <div className="pin-container">
+          <PinControls addPin={this.addPin} editPin={this.editPin} deletePin={this.deletePin} viewPins={this.viewPins}/>
           <PinInput id={null} handleSubmit={event=> event.preventDefault()} />
       </div>
     )
   }
 }
 
-export default CanvasContainer;
+export default PinContainer;
