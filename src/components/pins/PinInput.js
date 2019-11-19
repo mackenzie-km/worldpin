@@ -8,8 +8,7 @@ class PinInput extends PureComponent {
       name: "",
       description: "",
       color: "#ffffff",
-      id: null,
-      toggle: true
+      id: null
     }
   }
 
