@@ -42,3 +42,20 @@ header.canvas-title {
   background-attachment: fixed;
   background-size: contain;
 }
+
+button {
+  border: none;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  outline: none;
+  padding: 0px 2px;
+}
+
+button i.material-icons:hover {
+  color: #192b30;
+}
+
+button i.material-icons {
+  color: #6F4A30;
+  font-size: 3.5vw;
+}
