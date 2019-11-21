@@ -4,12 +4,19 @@ import CanvasMap from '../components/canvas/CanvasMap.js';
 import CanvasInfo from '../components/canvas/CanvasInfo';
 import PinContainer from './PinContainer';
 
-// All of our canvas components (title, map, info, input) & pin container called & manipulated here 
+// All of our canvas components (title, map, info, input) & pin container called & manipulated here
 class CanvasContainer extends PureComponent {
 
-  info = (event) => {
+  constructor(){
+    super()
+    this.state = {
+      canvasInfo: false
+    }
+  }
+
+  toggleInfo = (event) => {
     event.preventDefault();
-    console.log("info will go here")
+    this.setState({canvasInfo: !this.state.canvasInfo})
   }
 
   render() {
@@ -17,7 +24,8 @@ class CanvasContainer extends PureComponent {
       <div className="canvas-container">
           <CanvasTitle title={"ten characters"} id={11111} />
           <CanvasMap url={null} />
-          <CanvasInfo info={this.info} />
+          <button id="canvas-info" onClick={this.toggleInfo} alt="info"><i className="material-icons">info</i></button>
+          {!!this.state.canvasInfo ? <CanvasInfo /> : null }
           <PinContainer />
       </div>
     )
