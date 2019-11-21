@@ -1,3 +1,8 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   background-repeat: no-repeat;
   background-position: center center;
@@ -14,33 +19,43 @@
 }
 
 .canvas-container {
-  text-align: center;
-  height: inherit;
-  width: inherit;
+  display: inline-grid;
+  grid-template-rows: 10vh 90vh;
+  grid-template-columns: 1vw 98vw 1vw;
 }
 
 h1 {
   color: #43374d;
   font-family: 'Raleway', serif;
-  max-height: 5vh;
-  display: inline;
   border-bottom: 3px double #43374d;
+  display: inline;
+  font-size: 3vw;
+  margin: 0px 2%;
 }
 
 header.canvas-title {
-  font-size: 1.5vw;
-  width: inherit;
-  max-height: 5vh;
+  grid-column: 2/3;
+  grid-row: 1/2;
+  text-align: center;
+  width: 100%;
+  margin: 2vh auto;
+  z-index: 10;
 }
 
 .canvas-map {
-  margin: auto;
-  height: 95vh;
-  width: inherit;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  grid-column: 2/3;
+  grid-row: 1/3;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: top center;
   background-attachment: fixed;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
   background-size: contain;
+  z-index: 0;
 }
 
 button {
@@ -113,4 +128,14 @@ input[type="submit"]:hover {
   box-shadow: 0 0 0.2vw 0.2vw #696868;
 }
 
-/* fix so it selects, has shadow, and add in all the colors */
+#canvas-info {
+  position: absolute;
+  right: 1%;
+  bottom: 0%;
+}
+
+@media screen and (max-height: 500px) {
+  h1 {
+     font-size: 8vh;
+  }
+}
