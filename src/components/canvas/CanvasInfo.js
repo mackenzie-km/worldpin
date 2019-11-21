@@ -1,8 +1,13 @@
 import React from 'react';
 
-const CanvasInfo = props => {
+const CanvasInfo = () => {
   return (
-    <button id="canvas-info" onClick={props.info} alt="info"><i className="material-icons">info</i></button>
+    <div className="canvas-info">
+      Welcome! Click the settings button to begin tracking people or items.
+      <br/><br/>
+        <a alt="my github" href="https://github.com/mackenzie-km">Mackenzie Moore</a>{" & "}
+        <a alt="default map source" href="http://www.pngall.com/world-map-png">Default Map Source</a>
+    </div>
   )
 }
 

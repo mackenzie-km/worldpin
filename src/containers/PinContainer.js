@@ -20,6 +20,11 @@ togglePinInput = (event) => {
   this.setState({pinInput: !this.state.pinInput})
 }
 
+toggleControls = (event) => {
+  event.preventDefault();
+  this.setState({pinControls: !this.state.pinControls})
+}
+
 addPin = (event) => {
   console.log(event.type, " before default");
   event.preventDefault();
@@ -53,10 +58,11 @@ handleSubmit = (event) => {
 
   render() {
     return (
-      <div className="pin-container">
+      <div className="pin-container" >
           {!!this.state.pinControls ? <PinControls addPin={this.addPin} editPin={this.editPin} deletePin={this.deletePin} viewPins={this.viewPins}/> : null }
           {!!this.state.pinInput ? <PinInput id={null} handleSubmit={this.handleSubmit} hide={this.togglePinInput} /> : null}
           <PinList />
+          <button id="pin-controls-toggle" onClick={this.toggleControls} alt="more"><i className="material-icons">settings_application</i></button>
       </div>
     )
   }
