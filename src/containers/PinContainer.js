@@ -4,6 +4,19 @@ import PinControls from '../components/pins/PinControls.js';
 
 class PinContainer extends PureComponent {
 
+constructor(){
+  super()
+  this.state = {
+    pinInput: false,
+    pinControls: false
+  }
+}
+
+togglePinInput = (event) => {
+  event.preventDefault();
+  this.setState({pinInput: !this.state.pinInput})
+}
+
 addPin = (event) => {
   console.log(event.type, " before default");
   event.preventDefault();
@@ -37,8 +50,8 @@ handleSubmit = (event) => {
   render() {
     return (
       <div className="pin-container">
-          <PinControls addPin={this.addPin} editPin={this.editPin} deletePin={this.deletePin} viewPins={this.viewPins}/>
-          <PinInput id={null} handleSubmit={this.handleSubmit} />
+          {!!this.state.pinControls ? <PinControls addPin={this.addPin} editPin={this.editPin} deletePin={this.deletePin} viewPins={this.viewPins}/> : null }
+          {!!this.state.pinInput ? <PinInput id={null} handleSubmit={this.handleSubmit} hide={this.togglePinInput} /> : null}
       </div>
     )
   }
