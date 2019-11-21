@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PinInput from '../components/pins/PinInput.js';
 import PinControls from '../components/pins/PinControls.js';
+import PinList from '../components/pins/PinList.js';
 
 // Handles all of the pin logic and display
 
@@ -55,6 +56,7 @@ handleSubmit = (event) => {
       <div className="pin-container">
           {!!this.state.pinControls ? <PinControls addPin={this.addPin} editPin={this.editPin} deletePin={this.deletePin} viewPins={this.viewPins}/> : null }
           {!!this.state.pinInput ? <PinInput id={null} handleSubmit={this.handleSubmit} hide={this.togglePinInput} /> : null}
+          <PinList />
       </div>
     )
   }
