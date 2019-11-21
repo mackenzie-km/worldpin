@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import PinInput from '../components/pins/PinInput.js';
 import PinControls from '../components/pins/PinControls.js';
 
+// Handles all of the pin logic and display
+
 class PinContainer extends PureComponent {
 
 constructor(){
@@ -44,6 +46,7 @@ viewPins = (event) => {
 
 handleSubmit = (event) => {
   event.preventDefault()
+  this.togglePinInput()
   console.log(event)
 }
 
