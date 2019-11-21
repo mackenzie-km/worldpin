@@ -59,3 +59,58 @@ button i.material-icons {
   color: #6F4A30;
   font-size: 3.5vw;
 }
+
+input[type="radio"] {
+  width: 0px;
+  position: fixed;
+  opacity: 0;
+}
+
+input[type="submit"], input[type="text"] {
+    background-color: rgba(255, 255, 255, 0.7);
+    background-repeat: no-repeat;
+    color: black;
+    border: none;
+    box-shadow: 0.1vw 0.1vw 0.2vw #888888;
+    font-size: 1vw;
+    padding: 0.5vw 1vw;
+    margin: 0.4vw;
+}
+
+input[type="submit"]:focus, input[type="text"]:focus {
+  outline-color: #888888;
+}
+
+input[type="submit"]:hover {
+    box-shadow: 0.2vw 0.2vw 0.4vw #888888;
+}
+
+.pin-input {
+  background-color: rgba(175, 175, 175, 0.9);
+  width: 15%;
+  margin: 0 auto;
+  padding: 1vw;
+  border-color: Transparent;
+  box-shadow: 0.2vw 0.2vw 0.4vw #888888;
+}
+
+.pin-input label {
+  font-weight: 600;
+}
+
+
+.pin-input label.color {
+  display: inline-block;
+  padding: .7%;
+  font-size: 1vw;
+  border: 0.5vw solid Transparent;
+  border-radius: 50%;
+  margin: 0.4vw 0.2vw;
+  vertical-align: middle;
+}
+
+.pin-input input[type="radio"]:checked + label.color, .pin-input label.color:hover, .pin-input label[type="radio"].color:focus + span  {
+  box-shadow: 0 0 0.2vw 0.2vw #696868;
+}
+
+/* fix so it selects, has shadow, and add in all the colors */
