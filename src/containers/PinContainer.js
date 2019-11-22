@@ -17,7 +17,9 @@ constructor(){
 }
 
 togglePinInput = (event) => {
+  let map = document.getElementById('root')
   this.setState({pinInput: !this.state.pinInput})
+  this.state.pinControls ? map.style.cursor="crosshair" : map.style.cursor="default";
 }
 
 toggleControls = (event) => {
@@ -43,6 +45,7 @@ viewButton = () => {
 
 handleSubmit = (event, data) => {
   event.preventDefault()
+  data.location = this.props.capturedClick
   this.props.createPin(data)
   this.togglePinInput()
 }
@@ -50,7 +53,7 @@ handleSubmit = (event, data) => {
   render() {
     return (
       <React.Fragment>
-          {!!this.state.pinControls ? <PinControls addButton={this.addButton} editButton={this.editButton} deleteButton={this.deleteButton} viewButton={this.viewButton}/> : null }
+          {!!this.state.pinControls ? <PinControls addButton={this.addButton} editButton={this.editButton} deleteButton={this.deleteButton} viewButton={this.viewButton} /> : null }
           {!!this.state.pinInput ? <PinInput id={null} handleSubmit={this.handleSubmit} hide={this.togglePinInput} /> : null}
           <PinList />
           <button id="pin-controls-toggle" onClick={this.toggleControls} alt="more"><i className="material-icons">settings</i></button>

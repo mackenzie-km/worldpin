@@ -10,7 +10,8 @@ class CanvasContainer extends PureComponent {
   constructor(){
     super()
     this.state = {
-      canvasInfo: false
+      canvasInfo: false,
+      capturedClick: []
     }
   }
 
@@ -19,14 +20,24 @@ class CanvasContainer extends PureComponent {
     this.setState({canvasInfo: !this.state.canvasInfo})
   }
 
+  handleMapClick = (event) => {
+    let element = document.getElementsByClassName("canvas-map")[0];
+    let rect = element.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    let xScale = rect.width / element.offsetWidth;
+    let yScale = rect.height / element.offsetHeight;
+    this.setState({ capturedClick: [(x*xScale), (y*yScale)] })
+  }
+
   render() {
     return (
       <div className="canvas-container">
           <CanvasTitle title={"ten characters"} id={11111} />
-          <CanvasMap url={null} />
+          <CanvasMap url={null} handleMapClick={this.handleMapClick} />
           <button id="canvas-info" onClick={this.toggleInfo} alt="info"><i className="material-icons">info</i></button>
           {!!this.state.canvasInfo ? <CanvasInfo /> : null }
-          <PinContainer />
+          <PinContainer capturedClick={this.state.capturedClick} />
       </div>
     )
   }
