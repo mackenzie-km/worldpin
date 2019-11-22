@@ -19,7 +19,6 @@ class PinInput extends PureComponent {
 
   handleName = (event) => {
     this.setState({name: event.target.value})
-  console.log(this.state)
   }
 
   handleDescription = (event) => {
@@ -29,7 +28,7 @@ class PinInput extends PureComponent {
   render() {
     return (
       <div className="pin-input">
-        <form onSubmit={event => this.props.handleSubmit(event)}>
+        <form onSubmit={event => this.props.handleSubmit(event, this.state)}>
           <label> Name </label><br />
             <input type="text" onChange={this.handleName} value={this.state.name} name="name" id="name" /><br />
           <label> Description </label><br />
