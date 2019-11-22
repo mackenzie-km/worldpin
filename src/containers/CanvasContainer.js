@@ -3,7 +3,6 @@ import CanvasTitle from '../components/canvas/CanvasTitle.js';
 import CanvasMap from '../components/canvas/CanvasMap.js';
 import CanvasInfo from '../components/canvas/CanvasInfo';
 import PinContainer from './PinContainer';
-import { connect } from 'react-redux';
 
 // All of our canvas components (title, map, info, input) & pin container called & manipulated here
 class CanvasContainer extends PureComponent {
@@ -33,4 +32,4 @@ class CanvasContainer extends PureComponent {
   }
 }
 
-export default connect()(CanvasContainer);
+export default CanvasContainer;
