@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PinInput from '../components/pins/PinInput.js';
 import PinControls from '../components/pins/PinControls.js';
 import PinList from '../components/pins/PinList.js';
+import { connect } from 'react-redux';
 
 // Handles all of the pin logic and display
 
@@ -62,4 +63,4 @@ handleSubmit = (event) => {
   }
 }
 
-export default PinContainer;
+export default connect()(PinContainer);
