@@ -25,36 +25,32 @@ toggleControls = (event) => {
   this.setState({pinControls: !this.state.pinControls})
 }
 
-addPin = (event) => {
-  event.preventDefault();
+addButton = () => {
   this.togglePinInput()
 }
 
-editPin = (event) => {
-  event.preventDefault();
+editButton = () => {
   console.log("edit")
 }
 
-deletePin = (event) => {
-  event.preventDefault();
+deleteButton = () => {
   console.log("delete")
 }
 
-viewPins = (event) => {
-  event.preventDefault();
+viewButton = () => {
   console.log("view")
 }
 
-handleSubmit = (event) => {
+handleSubmit = (event, data) => {
   event.preventDefault()
+  this.props.createPin(data)
   this.togglePinInput()
-  console.log(event)
 }
 
   render() {
     return (
       <React.Fragment>
-          {!!this.state.pinControls ? <PinControls addPin={this.addPin} editPin={this.editPin} deletePin={this.deletePin} viewPins={this.viewPins}/> : null }
+          {!!this.state.pinControls ? <PinControls addButton={this.addButton} editButton={this.editButton} deleteButton={this.deleteButton} viewButton={this.viewButton}/> : null }
           {!!this.state.pinInput ? <PinInput id={null} handleSubmit={this.handleSubmit} hide={this.togglePinInput} /> : null}
           <PinList />
           <button id="pin-controls-toggle" onClick={this.toggleControls} alt="more"><i className="material-icons">settings</i></button>
@@ -63,4 +59,17 @@ handleSubmit = (event) => {
   }
 }
 
-export default connect()(PinContainer);
+const mapStateToProps = (state) => {
+  return { pins: state.pins }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createPin: (data) => {dispatch({type: 'CREATE_PIN', data})},
+    deletePin: () => {dispatch()},
+    editPin: () => {dispatch()},
+    filterPins: () => {dispatch()}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PinContainer);
