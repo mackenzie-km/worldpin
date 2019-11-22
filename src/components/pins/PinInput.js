@@ -46,7 +46,7 @@ class PinInput extends PureComponent {
             <input type="radio" name="color" value="#ffffff" id="color-ffffff" onChange={this.handleColor} /><label className="color" htmlFor="color-ffffff" style={{backgroundColor: "#ffffff"}}></label>
             <br />
             <input type="submit" />
-            <button onClick={this.props.hide}>Hide</button>
+            <button onClick={this.props.hide} className="hide">Hide</button>
         </form>
       </div>
     )
