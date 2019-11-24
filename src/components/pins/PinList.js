@@ -3,9 +3,9 @@ import Pin from './Pin.js';
 
 const PinList = (props = []) => {
   return (
-    <div>
-      { props.length > 0 ? props.pins.map(x => <Pin info={x} />) : null }
-    </div>
+    <React.Fragment>
+      { !!(props.pins.length > 0) ? props.pins.map(x => <Pin key={x.id} info={x} offset={props.offset} />) : null }
+    </React.Fragment>
   )
 }
 
