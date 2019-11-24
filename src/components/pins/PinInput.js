@@ -30,13 +30,13 @@ class PinInput extends PureComponent {
     return (
       <div className="pin-input">
         <form onSubmit={event => this.props.handleSubmit(event, this.state)}>
-          <label> Location </label><br />
-            Click on the map to save the location.<br />
-          <label> Name </label><br />
+          <label> <u>Location:</u> </label><br />
+            Click on the map to save.<br />
+          <label> <u>Name:</u> </label><br />
             <input type="text" onChange={this.handleName} value={this.state.name} name="name" id="name" /><br />
-          <label> Description </label><br />
+          <label> <u>Description:</u> </label><br />
             <input type="text" onChange={this.handleDescription} value={this.state.description} name="description" id="description" /><br />
-          <label> Color </label><br />
+          <label> <u>Color:</u> </label><br />
             <input type="radio" name="color" value="#e8028c" id="color-e8028c" onChange={this.handleColor} /><label className="color" htmlFor="color-e8028c" style={{backgroundColor: "#e8028c"}}></label>
             <input type="radio" name="color" value="#61210f" id="color-61210f" onChange={this.handleColor} /><label className="color" htmlFor="color-61210f" style={{backgroundColor: "#61210f"}}></label>
             <input type="radio" name="color" value="#e9724c" id="color-e9724c" onChange={this.handleColor} /><label className="color" htmlFor="color-e9724c" style={{backgroundColor: "#e9724c"}}></label>

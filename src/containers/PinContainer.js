@@ -55,7 +55,7 @@ handleSubmit = (event, data) => {
       <React.Fragment>
           {!!this.state.pinControls ? <PinControls addButton={this.addButton} editButton={this.editButton} deleteButton={this.deleteButton} viewButton={this.viewButton} /> : null }
           {!!this.state.pinInput ? <PinInput id={null} handleSubmit={this.handleSubmit} hide={this.togglePinInput} /> : null}
-          <PinList />
+          <PinList offset={this.props.offset} pins={this.props.pins} />
           <button id="pin-controls-toggle" onClick={this.toggleControls} alt="more"><i className="material-icons">settings</i></button>
       </React.Fragment>
     )
@@ -63,7 +63,7 @@ handleSubmit = (event, data) => {
 }
 
 const mapStateToProps = (state) => {
-  return { pins: state.pins }
+  return { pins: state }
 }
 
 const mapDispatchToProps = (dispatch) => {

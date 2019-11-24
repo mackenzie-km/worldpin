@@ -11,8 +11,17 @@ class CanvasContainer extends PureComponent {
     super()
     this.state = {
       canvasInfo: false,
-      capturedClick: []
+      capturedClick: [],
+      offset: []
     }
+  }
+
+  componentDidMount(){
+    let element = document.getElementsByClassName("canvas-map")[0];
+    let rect = element.getBoundingClientRect();
+    let xScale = rect.width / element.offsetWidth;
+    let yScale = rect.height / element.offsetHeight;
+    this.setState({offset: [xScale, yScale] || [1 , 1]})
   }
 
   toggleInfo = (event) => {
@@ -37,7 +46,7 @@ class CanvasContainer extends PureComponent {
           <CanvasMap url={null} handleMapClick={this.handleMapClick} />
           <button id="canvas-info" onClick={this.toggleInfo} alt="info"><i className="material-icons">info</i></button>
           {!!this.state.canvasInfo ? <CanvasInfo /> : null }
-          <PinContainer capturedClick={this.state.capturedClick} />
+          <PinContainer capturedClick={this.state.capturedClick} offset={this.state.offset} />
       </div>
     )
   }
