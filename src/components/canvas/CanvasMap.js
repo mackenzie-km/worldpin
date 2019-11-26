@@ -4,8 +4,9 @@ import background from '../../worldpin_canvas_background.png';
 
 const CanvasMap = (props) => {
   return (
-    <div className="canvas-map" onClick={props.handleMapClick} style={{ backgroundImage: `url(${props.url || defaultMap}), url(${background})` }}>
-      {null}
+    <div className="canvas-map" onClick={props.handleMapClick} >
+      <img id="world-map" src={props.url || defaultMap} alt="world map" />
+      <img id="canvas" src={background} alt="canvas" />
     </div>
   )
 }

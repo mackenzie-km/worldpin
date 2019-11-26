@@ -12,16 +12,13 @@ class CanvasContainer extends PureComponent {
     this.state = {
       canvasInfo: false,
       capturedClick: [],
-      offset: []
+      browserSize: {x: 1366, y: 768}
     }
   }
 
   componentDidMount(){
-    let element = document.getElementsByClassName("canvas-map")[0];
-    let rect = element.getBoundingClientRect();
-    let xScale = rect.width / element.offsetWidth;
-    let yScale = rect.height / element.offsetHeight;
-    this.setState({offset: [xScale, yScale] || [1 , 1]})
+    this.calculateOffset()
+    window.addEventListener("resize", this.calculateOffset);
   }
 
   toggleInfo = (event) => {
@@ -32,11 +29,20 @@ class CanvasContainer extends PureComponent {
   handleMapClick = (event) => {
     let element = document.getElementsByClassName("canvas-map")[0];
     let rect = element.getBoundingClientRect();
-    let x = event.clientX - rect.left;
-    let y = event.clientY - rect.top;
-    let xScale = rect.width / element.offsetWidth;
-    let yScale = rect.height / element.offsetHeight;
-    this.setState({ capturedClick: [(x*xScale), (y*yScale)] })
+    let x = event.clientX;
+    let y = event.clientY;
+    console.log({capturedClick: [x, y]})
+    this.setState({ capturedClick: [x, y] })
+  }
+
+  calculateOffset = () => {
+    let pastSize = this.state.browserSize
+    let element = document.getElementsByClassName("canvas-map")[0];
+    let rect = element.getBoundingClientRect();
+    let currentSize = {x: rect.width, y: rect.height};
+    let difference = {x: pastSize.x-currentSize.x, y: pastSize.y-currentSize.y}
+    console.log({browserSize: currentSize, pastSize, difference})
+    this.setState({ browserSize: currentSize  })
   }
 
   render() {
@@ -46,7 +52,7 @@ class CanvasContainer extends PureComponent {
           <CanvasMap url={null} handleMapClick={this.handleMapClick} />
           <button id="canvas-info" onClick={this.toggleInfo} alt="info"><i className="material-icons">info</i></button>
           {!!this.state.canvasInfo ? <CanvasInfo /> : null }
-          <PinContainer capturedClick={this.state.capturedClick} offset={this.state.offset} />
+          <PinContainer capturedClick={this.state.capturedClick} browserSize={this.state.browserSize} />
       </div>
     )
   }
