@@ -3,6 +3,8 @@ import PinInput from '../components/pins/PinInput.js';
 import PinControls from '../components/pins/PinControls.js';
 import PinList from '../components/pins/PinList.js';
 import { connect } from 'react-redux';
+import { VisibilityFilters } from '../actions';
+import { SetFilter } from '../actions';
 
 // Handles all of the pin logic and display
 
@@ -27,8 +29,8 @@ toggleControls = (event) => {
   this.setState({pinControls: !this.state.pinControls})
 }
 
-viewButton = () => {
-  console.log("view")
+viewButton = (data = null) => {
+  this.props.filterPin(data)
 }
 
 handleSubmit = (event, data) => {
@@ -53,7 +55,9 @@ deletePin = (id) => {
   render() {
     return (
       <React.Fragment>
-          {!!this.state.pinControls ? <PinControls togglePinInput={this.togglePinInput} viewButton={this.viewButton} /> : null }
+          {!!this.state.pinControls
+            ? <PinControls togglePinInput={this.togglePinInput} viewButton={this.viewButton} />
+            : null }
           {!!this.state.pinInput
             ? <PinInput
                 pinId={(!!this.state.currentId) ? this.state.currentId : null }
@@ -64,16 +68,33 @@ deletePin = (id) => {
           {<PinList
             browserSize={this.props.browserSize}
             togglePinInput={this.togglePinInput}
-            pins={this.props.state.pinReducer}
+            pins={this.props.pins}
             delete={this.deletePin} />}
-          <button id="pin-controls-toggle" onClick={this.toggleControls} alt="more"><i className="material-icons">settings</i></button>
+          <button id="pin-controls-toggle"
+            onClick={this.toggleControls}
+            alt="more">
+            <i className="material-icons">settings</i>
+          </button>
       </React.Fragment>
     )
   }
 }
 
+const getVisiblePins = (pins, filter) => {
+  switch (filter.type) {
+    case VisibilityFilters.SHOW_ALL:
+      return pins;
+    case VisibilityFilters.SHOW_PIN_BY_ID:
+      return pins.filter(x => x.id === filter.id);
+    case VisibilityFilters.SHOW_PINS_BY_COLOR:
+      return pins.filter(x => x.color === filter.color);
+    default:
+      return pins
+  }
+}
+
 const mapStateToProps = (state) => {
-  return { state }
+  return { pins: getVisiblePins(state.pinReducer, state.filterReducer) }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -81,7 +102,7 @@ const mapDispatchToProps = (dispatch) => {
     createPin: (data) => {dispatch({type: 'CREATE_PIN', data})},
     deletePin: (data) => {dispatch({type: 'DELETE_PIN', data})},
     editPin: (data) => {dispatch({type: 'EDIT_PIN', data})},
-    viewPins: (data) => {dispatch({type: 'VIEW_PINS', data})}
+    filterPin: (data) => dispatch(SetFilter('SHOW_PIN_BY_ID'))
   }
 }
 
