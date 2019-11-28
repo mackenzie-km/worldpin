@@ -5,7 +5,7 @@ function pinReducer (state = [], action) {
       return [...state,
         { id: cuid(), name: action.data.name, location: action.data.location, description: action.data.description, color: action.data.color }];
     case 'DELETE_PIN':
-      return [...state.map(x=> x.id !== action.id)];
+      return [...state.filter(x=> x.id !== action.data)];
     case 'EDIT_PIN':
       return [...state.filter(x=> x.id !== action.data.id), { id: action.data.id, name: action.data.name, location: action.data.location, description: action.data.description, color: action.data.color }];
     case 'VIEW_PINS':

@@ -46,6 +46,10 @@ handleEdit = (event, data) => {
   this.togglePinInput(null)
 }
 
+deletePin = (id) => {
+  this.props.deletePin(id)
+}
+
   render() {
     return (
       <React.Fragment>
@@ -57,7 +61,11 @@ handleEdit = (event, data) => {
                 handleEdit={this.handleEdit}
                 hide={this.togglePinInput} />
             : null}
-          {<PinList browserSize={this.props.browserSize} togglePinInput={this.togglePinInput} pins={this.props.pins} />}
+          {<PinList
+            browserSize={this.props.browserSize}
+            togglePinInput={this.togglePinInput}
+            pins={this.props.pins}
+            delete={this.deletePin} />}
           <button id="pin-controls-toggle" onClick={this.toggleControls} alt="more"><i className="material-icons">settings</i></button>
       </React.Fragment>
     )
