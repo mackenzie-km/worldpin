@@ -36,7 +36,6 @@ class PinInput extends PureComponent {
     return (
       <div className="pin-input">
         <form onSubmit={event => this.handleSubmit(event, this.state)}>
-        {!!this.state.id ? <b>Edit {this.state.name}:</b> : <b>Create a New Pin:</b> }< br/>
           <label> <u>Location:</u> </label><br />
             Click on the map to save.<br />
           <label> <u>Name:</u> </label><br />
