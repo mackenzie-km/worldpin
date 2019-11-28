@@ -12,17 +12,13 @@ class ColorFilter extends PureComponent {
   handleColor = (event) => {
     let color = event.target.value
     this.setState({color: color})
-  }
-
-  handleSubmit = (event, state) => {
-    event.preventDefault();
-    this.props.filterByColor(state)
+    this.props.filterByColor(color)
   }
 
   render() {
     return (
-      <div className="pin-input">
-        <form onSubmit={event => this.handleSubmit(event, this.state)}>
+      <div className="color-input">
+        <form>
           <label> <u>Color:</u> </label><br />
             <input type="radio" name="color" value="#e8028c" id="color-e8028c" onChange={this.handleColor} /><label className="color" htmlFor="color-e8028c" style={{backgroundColor: "#e8028c"}}></label>
             <input type="radio" name="color" value="#61210f" id="color-61210f" onChange={this.handleColor} /><label className="color" htmlFor="color-61210f" style={{backgroundColor: "#61210f"}}></label>
@@ -34,7 +30,6 @@ class ColorFilter extends PureComponent {
             <input type="radio" name="color" value="#000000" id="color-000000" onChange={this.handleColor} /><label className="color" htmlFor="color-000000" style={{backgroundColor: "#000000"}}></label>
             <input type="radio" name="color" value="#ffffff" id="color-ffffff" onChange={this.handleColor} /><label className="color" htmlFor="color-ffffff" style={{backgroundColor: "#ffffff"}}></label>
             <br />
-            <input type="submit" />
         </form>
       </div>
     )
