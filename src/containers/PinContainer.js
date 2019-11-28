@@ -4,8 +4,6 @@ import PinControls from '../components/pins/PinControls.js';
 import PinList from '../components/pins/PinList.js';
 import ColorFilter from '../components/canvas/ColorFilter.js'
 import { connect } from 'react-redux';
-import { VisibilityFilters } from '../actions';
-import { SetFilter } from '../actions';
 
 // Handles all of the pin logic and display
 
@@ -16,14 +14,14 @@ constructor(props){
   this.state = {
     pinInput: false,
     pinControls: false,
-    currentId: null,
-    colorFilter: false
+    colorFilter: false,
+    currentPin: {}
   }
 }
 
-togglePinInput = (id = null) => {
+togglePinInput = (pinData = null) => {
   let map = document.getElementById('root')
-  this.setState({pinInput: !this.state.pinInput, currentId: id || null})
+  this.setState({pinInput: !this.state.pinInput, currentPin: pinData})
   !!this.state.pinInput ? map.style.cursor="default" : map.style.cursor="crosshair";
 }
 
@@ -39,7 +37,6 @@ filterByColor = (color) => {
 
 toggleColorFilter = (event) => {
   event.preventDefault();
-  let map = document.getElementById('root')
   if (this.state.colorFilter) {this.props.setFilter({type: 'SHOW_ALL', criteria: null})}
   this.setState({colorFilter: !this.state.colorFilter})
 }
@@ -48,7 +45,6 @@ handleSubmit = (event, data) => {
   event.preventDefault()
   data.location = this.props.capturedClick
   this.props.createPin(data)
-  this.setState({currentId: null})
   this.togglePinInput(null)
 }
 
@@ -73,7 +69,7 @@ deletePin = (id) => {
             : null }
           {!!this.state.pinInput
             ? <PinInput
-                pinId={(!!this.state.currentId) ? this.state.currentId : null }
+              currentPin={this.state.currentPin}
                 handleSubmit={this.handleSubmit}
                 handleEdit={this.handleEdit}
                 hide={this.togglePinInput} />

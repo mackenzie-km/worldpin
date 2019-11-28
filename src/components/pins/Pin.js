@@ -10,7 +10,7 @@ const Pin = (props) => {
          }}>
          <div className='hover-div--on'>
              <button alt="edit">
-                <i className="material-icons small" onClick={()=>props.togglePinInput(props.info.id)}>
+                <i className="material-icons small" onClick={()=>props.togglePinInput(props.info)}>
                 edit</i>
               </button>
              <button alt="cancel">

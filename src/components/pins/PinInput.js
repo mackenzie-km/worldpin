@@ -5,11 +5,11 @@ class PinInput extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      name: props.name || "",
-      description: props.description || "",
-      color: props.color || "#ffffff",
-      location: props.location || [],
-      id: props.pinId || null
+      name: !!props.currentPin ? props.currentPin.name : "",
+      description: !!props.currentPin ? props.currentPin.description : "",
+      color: !!props.currentPin ? props.currentPin.color : "#ffffff",
+      location: !!props.currentPin ? props.currentPin.location : [],
+      id: !!props.currentPin ? props.currentPin.id : null
     }
   }
 
