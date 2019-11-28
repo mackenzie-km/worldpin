@@ -17,8 +17,8 @@ class CanvasContainer extends PureComponent {
   }
 
   componentDidMount(){
-    this.calculateOffset()
-    window.addEventListener("resize", this.calculateOffset);
+    // this.calculateOffset()
+    // window.addEventListener("resize", this.calculateOffset);
   }
 
   toggleInfo = (event) => {
@@ -27,8 +27,6 @@ class CanvasContainer extends PureComponent {
   }
 
   handleMapClick = (event) => {
-    let element = document.getElementsByClassName("canvas-map")[0];
-    let rect = element.getBoundingClientRect();
     let x = event.clientX;
     let y = event.clientY;
     console.log({capturedClick: [x, y]})
@@ -36,12 +34,9 @@ class CanvasContainer extends PureComponent {
   }
 
   calculateOffset = () => {
-    let pastSize = this.state.browserSize
     let element = document.getElementsByClassName("canvas-map")[0];
     let rect = element.getBoundingClientRect();
     let currentSize = {x: rect.width, y: rect.height};
-    let difference = {x: pastSize.x-currentSize.x, y: pastSize.y-currentSize.y}
-    console.log({browserSize: currentSize, pastSize, difference})
     this.setState({ browserSize: currentSize  })
   }
 

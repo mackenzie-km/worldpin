@@ -12,29 +12,20 @@ constructor(){
   super()
   this.state = {
     pinInput: false,
-    pinControls: false
+    pinControls: false,
+    currentId: null
   }
 }
 
-togglePinInput = (event) => {
+togglePinInput = (id = null) => {
   let map = document.getElementById('root')
-  this.setState({pinInput: !this.state.pinInput})
-  !this.state.pinInput ? map.style.cursor="crosshair" : map.style.cursor="default";
+  this.setState({pinInput: !this.state.pinInput, currentId: id || null})
+  !!this.state.pinInput ? map.style.cursor="default" : map.style.cursor="crosshair";
 }
-
 toggleControls = (event) => {
   event.preventDefault();
   this.setState({pinControls: !this.state.pinControls})
 }
-
-addButton = () => {
-  this.togglePinInput()
-}
-
-editButton = () => {
-  this.togglePinInput()
-}
-
 
 viewButton = () => {
   console.log("view")
@@ -44,15 +35,29 @@ handleSubmit = (event, data) => {
   event.preventDefault()
   data.location = this.props.capturedClick
   this.props.createPin(data)
-  this.togglePinInput()
+  this.setState({currentId: null})
+  this.togglePinInput(null)
+}
+
+handleEdit = (event, data) => {
+  event.preventDefault()
+  data.location = this.props.capturedClick
+  this.props.editPin(data)
+  this.togglePinInput(null)
 }
 
   render() {
     return (
       <React.Fragment>
-          {!!this.state.pinControls ? <PinControls addButton={this.addButton} editButton={this.editButton} viewButton={this.viewButton} /> : null }
-          {!!this.state.pinInput ? <PinInput id={null} handleSubmit={this.handleSubmit} hide={this.togglePinInput} /> : null}
-          <PinList browserSize={this.props.browserSize} difference={this.props.difference} pins={this.props.pins} />
+          {!!this.state.pinControls ? <PinControls togglePinInput={this.togglePinInput} viewButton={this.viewButton} /> : null }
+          {!!this.state.pinInput
+            ? <PinInput
+                pinId={(!!this.state.currentId) ? this.state.currentId : null }
+                handleSubmit={this.handleSubmit}
+                handleEdit={this.handleEdit}
+                hide={this.togglePinInput} />
+            : null}
+          {<PinList browserSize={this.props.browserSize} togglePinInput={this.togglePinInput} pins={this.props.pins} />}
           <button id="pin-controls-toggle" onClick={this.toggleControls} alt="more"><i className="material-icons">settings</i></button>
       </React.Fragment>
     )
@@ -67,8 +72,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     createPin: (data) => {dispatch({type: 'CREATE_PIN', data})},
     deletePin: (data) => {dispatch({type: 'DELETE_PIN', data})},
-    editPin: () => {dispatch()},
-    filterPins: () => {dispatch()}
+    editPin: (data) => {dispatch({type: 'EDIT_PIN', data})},
+    viewPins: (data) => {dispatch({type: 'VIEW_PINS', data})}
   }
 }
 

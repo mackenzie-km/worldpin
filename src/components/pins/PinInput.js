@@ -5,11 +5,11 @@ class PinInput extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      name: "",
-      description: "",
-      color: "#ffffff",
-      location: [],
-      id: null
+      name: props.name || "",
+      description: props.description || "",
+      color: props.color || "#ffffff",
+      location: props.location || [],
+      id: props.pinId || null
     }
   }
 
@@ -26,10 +26,17 @@ class PinInput extends PureComponent {
     this.setState({description: event.target.value})
   }
 
+  handleSubmit = (event, state) => {
+    !!this.state.id
+      ? this.props.handleEdit(event, state)
+      : this.props.handleSubmit(event, state)
+  }
+
   render() {
     return (
       <div className="pin-input">
-        <form onSubmit={event => this.props.handleSubmit(event, this.state)}>
+        <form onSubmit={event => this.handleSubmit(event, this.state)}>
+        {!!this.state.id ? <b>Edit {this.state.name}:</b> : <b>Create a New Pin:</b> }< br/>
           <label> <u>Location:</u> </label><br />
             Click on the map to save.<br />
           <label> <u>Name:</u> </label><br />
@@ -48,7 +55,7 @@ class PinInput extends PureComponent {
             <input type="radio" name="color" value="#ffffff" id="color-ffffff" onChange={this.handleColor} /><label className="color" htmlFor="color-ffffff" style={{backgroundColor: "#ffffff"}}></label>
             <br />
             <input type="submit" />
-            <button onClick={this.props.hide} className="hide">Hide</button>
+            <button type="button" onClick={()=>this.props.hide(null)} className="hide">Hide</button>
         </form>
       </div>
     )
