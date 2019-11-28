@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PinInput from '../components/pins/PinInput.js';
 import PinControls from '../components/pins/PinControls.js';
 import PinList from '../components/pins/PinList.js';
+import ColorFilter from '../components/canvas/ColorFilter.js'
 import { connect } from 'react-redux';
 import { VisibilityFilters } from '../actions';
 import { SetFilter } from '../actions';
@@ -15,7 +16,8 @@ constructor(){
   this.state = {
     pinInput: false,
     pinControls: false,
-    currentId: null
+    currentId: null,
+    colorFilter: false
   }
 }
 
@@ -29,8 +31,13 @@ toggleControls = (event) => {
   this.setState({pinControls: !this.state.pinControls})
 }
 
-viewButton = (data = {type: 'SHOW_ALL', criteria: []}) => {
-  this.props.setFilter(data)
+filterByColor = (color) => {
+  let data = {type: 'SHOW_PINS_BY_COLOR', criteria: color}
+  this.props.setFilter(data);
+}
+
+toggleColorFilter = () => {
+  this.setState({colorFilter: !this.state.colorFilter})
 }
 
 handleSubmit = (event, data) => {
@@ -56,7 +63,9 @@ deletePin = (id) => {
     return (
       <React.Fragment>
           {!!this.state.pinControls
-            ? <PinControls togglePinInput={this.togglePinInput} viewButton={this.viewButton} />
+            ? <PinControls
+              togglePinInput={this.togglePinInput}
+              viewButton={this.toggleColorFilter} />
             : null }
           {!!this.state.pinInput
             ? <PinInput
@@ -70,6 +79,9 @@ deletePin = (id) => {
             togglePinInput={this.togglePinInput}
             pins={this.props.pins}
             delete={this.deletePin} />}
+          {!!this.state.colorFilter
+            ? <ColorFilter filterByColor={this.filterByColor} />
+            : null}
           <button id="pin-controls-toggle"
             onClick={this.toggleControls}
             alt="more">
@@ -85,9 +97,9 @@ const getVisiblePins = (pins, data) => {
     case 'SHOW_ALL':
       return pins;
     case 'SHOW_PIN_BY_ID':
-      return pins.filter(x => x.id === data.criteria);
+      return pins.filter(x => x.id === data.criteria.id);
     case 'SHOW_PINS_BY_COLOR':
-      return pins.filter(x => x.color === data.criteria);
+      return pins.filter(x => x.color === data.criteria.color);
     default:
       return pins
   }
