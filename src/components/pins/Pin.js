@@ -14,7 +14,7 @@ const Pin = (props) => {
                 edit</i>
               </button>
              <button alt="cancel">
-                <i className="material-icons small" onClick={console.log("delete")}>cancel</i>
+                <i className="material-icons small" onClick={()=>props.delete(props.info.id)}>cancel</i>
               </button><br />
               <u>{props.info.name}</u><br />
              {props.info.description}<br />
