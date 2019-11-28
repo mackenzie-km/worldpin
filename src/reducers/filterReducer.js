@@ -1,9 +1,7 @@
-export const Filters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_PIN: 'SHOW_PIN'
-}
+import { VisibilityFilters } from '../actions'
 
- const filterReducer = (state = Filters.SHOW_ALL, action) => {
+ const filterReducer = (state = 'VisibilityFilters.SHOW_ALL', action = null) => {
+debugger
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':
       return action.filter

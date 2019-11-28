@@ -260,8 +260,8 @@ button#pin-controls-toggle {
   display: inline-block;
   background-color: rgba(210, 213, 221, 0.8);
   width: fit-content;
-  min-width: 7vw;
-  max-width: 10vw;
+  min-width: 10vw;
+  max-width: 15vw;
   height: fit-content;
   margin: 0vw;
   padding: 1vw;
