@@ -2,16 +2,8 @@ import React, { PureComponent } from 'react';
 
 class ColorFilter extends PureComponent {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      color: "",
-    }
-  }
-
   handleColor = (event) => {
     let color = event.target.value
-    this.setState({color: color})
     this.props.filterByColor(color)
   }
 
