@@ -39,6 +39,7 @@ filterByColor = (color) => {
 
 toggleColorFilter = (event) => {
   event.preventDefault();
+  let map = document.getElementById('root')
   if (this.state.colorFilter) {this.props.setFilter({type: 'SHOW_ALL', criteria: null})}
   this.setState({colorFilter: !this.state.colorFilter})
 }
@@ -100,9 +101,9 @@ const getVisiblePins = (pins, data) => {
     case 'SHOW_ALL':
       return pins;
     case 'SHOW_PIN_BY_ID':
-      return pins.filter(x => x.id === data.criteria.id);
+      return pins.filter(x => x.id === data.criteria);
     case 'SHOW_PINS_BY_COLOR':
-      return pins.filter(x => x.color === data.criteria.color);
+      return pins.filter(x => x.color === data.criteria);
     default:
       return pins
   }
