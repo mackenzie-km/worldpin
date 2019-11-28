@@ -64,7 +64,7 @@ deletePin = (id) => {
           {<PinList
             browserSize={this.props.browserSize}
             togglePinInput={this.togglePinInput}
-            pins={this.props.pins}
+            pins={this.props.state.pinReducer}
             delete={this.deletePin} />}
           <button id="pin-controls-toggle" onClick={this.toggleControls} alt="more"><i className="material-icons">settings</i></button>
       </React.Fragment>
@@ -73,7 +73,7 @@ deletePin = (id) => {
 }
 
 const mapStateToProps = (state) => {
-  return { pins: state }
+  return { state }
 }
 
 const mapDispatchToProps = (dispatch) => {
