@@ -121,6 +121,10 @@ button i.material-icons {
   font-size: 3.5vw;
 }
 
+button i.material-icons.small {
+  font-size: 2.5vw;
+}
+
 input[type="radio"] {
   width: 0px;
   position: fixed;
@@ -252,12 +256,14 @@ button#pin-controls-toggle {
   display: none;
 }
 
-.hover-div:hover .hover-div--on {
+.hover-div:hover .hover-div--on, .hover-div-on:hover {
   display: inline-block;
   background-color: rgba(210, 213, 221, 0.8);
-  width: 15vw;
+  width: fit-content;
+  min-width: 7vw;
+  max-width: 10vw;
   height: fit-content;
-  margin: 2vw;
+  margin: 0vw;
   padding: 1vw;
   border-color: Transparent;
   box-shadow: 0.2vw 0.2vw 0.4vw #888888;

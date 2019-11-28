@@ -9,8 +9,15 @@ const Pin = (props) => {
            left: `${props.info.location[0]}px`
          }}>
          <div className='hover-div--on'>
-             <u>{props.info.name}</u><br />
-             {props.info.description}
+             <button alt="edit">
+                <i className="material-icons small" onClick={()=>props.togglePinInput(props.info.id)}>
+                edit</i>
+              </button>
+             <button alt="cancel">
+                <i className="material-icons small" onClick={console.log("delete")}>cancel</i>
+              </button><br />
+              <u>{props.info.name}</u><br />
+             {props.info.description}<br />
          </div>
       </div>
   )

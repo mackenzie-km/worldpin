@@ -1,15 +1,16 @@
 import cuid from 'cuid';
-
 function pinReducer (state = [], action) {
   switch (action.type) {
     case 'CREATE_PIN':
-      return [...state, {id: cuid(), name: action.data.name, location: action.data.location, description: action.data.description, color: action.data.color}];
+      return [...state,
+        { id: cuid(), name: action.data.name, location: action.data.location, description: action.data.description, color: action.data.color }];
     case 'DELETE_PIN':
       return [...state.map(x=> x.id !== action.id)];
     case 'EDIT_PIN':
-      return [...state.filter(x=> x.id !== action.id), {id: cuid, name: action.name, location: action.location, description: action.description}];
-    case 'FILTER_PINS':
-      return [...state.map(x=> x.color === action.color)];
+      return [...state.filter(x=> x.id !== action.data.id), { id: action.data.id, name: action.data.name, location: action.data.location, description: action.data.description, color: action.data.color }];
+    case 'VIEW_PINS':
+      let attribute = Object.keys(action.data)[0]
+      return [...state.filter(x => x[attribute] === action.data[attribute])];
     default:
       return [...state];
   }
