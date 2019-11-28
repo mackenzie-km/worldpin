@@ -150,7 +150,7 @@ input[type="submit"]:hover, .hide:hover {
     box-shadow: 0.2vw 0.2vw 0.4vw #888888;
 }
 
-.pin-input {
+.pin-input, .color-input {
   position: fixed;
   grid-column: 2/3;
   grid-row: 2/3;
@@ -193,7 +193,7 @@ input[type="submit"]:hover, .hide:hover {
 }
 
 
-.pin-input label.color {
+.pin-input label.color, .color-input label.color {
   display: inline-block;
   padding: .7%;
   font-size: 1vw;
@@ -203,7 +203,8 @@ input[type="submit"]:hover, .hide:hover {
   vertical-align: middle;
 }
 
-.pin-input input[type="radio"]:checked + label.color, .pin-input label.color:hover, .pin-input label[type="radio"].color:focus + span  {
+.pin-input input[type="radio"]:checked + label.color, .pin-input label.color:hover, .pin-input label[type="radio"].color:focus + span,
+.color-input input[type="radio"]:checked + label.color, .color-input label.color:hover, .color-input label[type="radio"].color:focus + span  {
   box-shadow: 0 0 0.2vw 0.2vw #696868;
 }
 

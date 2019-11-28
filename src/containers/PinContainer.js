@@ -11,8 +11,8 @@ import { SetFilter } from '../actions';
 
 class PinContainer extends PureComponent {
 
-constructor(){
-  super()
+constructor(props){
+  super(props)
   this.state = {
     pinInput: false,
     pinControls: false,
@@ -26,6 +26,7 @@ togglePinInput = (id = null) => {
   this.setState({pinInput: !this.state.pinInput, currentId: id || null})
   !!this.state.pinInput ? map.style.cursor="default" : map.style.cursor="crosshair";
 }
+
 toggleControls = (event) => {
   event.preventDefault();
   this.setState({pinControls: !this.state.pinControls})
@@ -36,7 +37,9 @@ filterByColor = (color) => {
   this.props.setFilter(data);
 }
 
-toggleColorFilter = () => {
+toggleColorFilter = (event) => {
+  event.preventDefault();
+  if (this.state.colorFilter) {this.props.setFilter({type: 'SHOW_ALL', criteria: null})}
   this.setState({colorFilter: !this.state.colorFilter})
 }
 
@@ -65,7 +68,7 @@ deletePin = (id) => {
           {!!this.state.pinControls
             ? <PinControls
               togglePinInput={this.togglePinInput}
-              viewButton={this.toggleColorFilter} />
+              toggleColorFilter={this.toggleColorFilter} />
             : null }
           {!!this.state.pinInput
             ? <PinInput
