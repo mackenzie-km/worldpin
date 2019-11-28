@@ -29,8 +29,8 @@ toggleControls = (event) => {
   this.setState({pinControls: !this.state.pinControls})
 }
 
-viewButton = (data = null) => {
-  this.props.filterPin(data)
+viewButton = (data = {type: 'SHOW_ALL', criteria: []}) => {
+  this.props.setFilter(data)
 }
 
 handleSubmit = (event, data) => {
@@ -80,14 +80,14 @@ deletePin = (id) => {
   }
 }
 
-const getVisiblePins = (pins, filter) => {
-  switch (filter.type) {
-    case VisibilityFilters.SHOW_ALL:
+const getVisiblePins = (pins, data) => {
+  switch (data.type) {
+    case 'SHOW_ALL':
       return pins;
-    case VisibilityFilters.SHOW_PIN_BY_ID:
-      return pins.filter(x => x.id === filter.id);
-    case VisibilityFilters.SHOW_PINS_BY_COLOR:
-      return pins.filter(x => x.color === filter.color);
+    case 'SHOW_PIN_BY_ID':
+      return pins.filter(x => x.id === data.criteria);
+    case 'SHOW_PINS_BY_COLOR':
+      return pins.filter(x => x.color === data.criteria);
     default:
       return pins
   }
@@ -102,7 +102,7 @@ const mapDispatchToProps = (dispatch) => {
     createPin: (data) => {dispatch({type: 'CREATE_PIN', data})},
     deletePin: (data) => {dispatch({type: 'DELETE_PIN', data})},
     editPin: (data) => {dispatch({type: 'EDIT_PIN', data})},
-    filterPin: (data) => dispatch(SetFilter('SHOW_PIN_BY_ID'))
+    setFilter: (data) => {dispatch({type: data.type, criteria: data.criteria})}
   }
 }
 
