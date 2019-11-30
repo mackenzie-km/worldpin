@@ -17,6 +17,12 @@ class PinController < ApplicationController
   def update
   end
 
-  def destroy 
+  def destroy
+  end
+
+  private
+
+  def pin_params
+    params.require(:pin).permit(:id, :description, :name, :location, :map_id)
   end
 end
