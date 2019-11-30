@@ -1,8 +1,10 @@
-class MapController < ApplicationController
-  before_action :find_map, only: [:show, :edit, :update, :destroy]
+class MapsController < ApplicationController
+  before_action only: [:show, :edit, :update, :destroy] do
+    find_map(params[:id])
+  end
   def create
     @map = Map.new(map_params)
-    render json: @map.to_json 
+    render json: @map.to_json
   end
 
   def show
@@ -25,7 +27,7 @@ class MapController < ApplicationController
   end
 
   def find_map(id)
-    @map = Map.find(map_params[:id])
+    @map = Map.find(id)
     return @map
   end
 end
