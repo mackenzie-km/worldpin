@@ -9,7 +9,8 @@ class PinsController < ApplicationController
   end
 
   def create
-    @pin = pin.new(pin_params)
+    @pin = Pin.new(pin_params)
+    @pin.save
     render json: @pin.to_json
   end
 
@@ -29,11 +30,11 @@ class PinsController < ApplicationController
   private
 
   def pin_params
-    params.require(:pin).permit(:id, :description, :name, :location, :map_id)
+    params.permit(:id, :description, :name, :location, :map_id)
   end
 
   def find_pin(id)
-    @pin = Pin.find(id)
+    @pin = Pin.find_by(id: id)
     return @pin
   end
 end

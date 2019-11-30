@@ -23,11 +23,11 @@ class MapsController < ApplicationController
   private
 
   def map_params
-    params.require(:map).permit(:id, :title, :url, :pins)
+    params.permit(:id, :title, :url, :pins)
   end
 
   def find_map(id)
-    @map = Map.find(id)
+    @map = Map.find_by(id: id)
     return @map
   end
 end
