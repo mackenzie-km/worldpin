@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  resources :map, :pin
+  resources :map, except: [:index, :edit, :new]
+  resources :pin
 end
