@@ -1,0 +1,6 @@
+<<<<<<< HEAD
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+=======
+# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+>>>>>>> 94d037d... installed rails and set up database
