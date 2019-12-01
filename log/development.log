@@ -1,0 +1,16 @@
+Started GET "/" for ::1 at 2019-11-30 22:10:02 -0800
+  [1m[35m (92.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/Mackenzie/.rvm/gems/ruby-2.6.3/gems/railties-6.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/Mackenzie/.rvm/gems/ruby-2.6.3/gems/railties-6.0.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 17.4ms | Allocations: 482)
+Completed 200 OK in 49ms (Views: 32.5ms | ActiveRecord: 0.0ms | Allocations: 2644)
+
+
+Started GET "/maps/1" for ::1 at 2019-11-30 22:10:11 -0800
+Processing by MapsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMap Load (22.0ms)[0m  [1m[34mSELECT "maps".* FROM "maps" WHERE "maps"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/maps_controller.rb:30:in `find_map'
+Completed 200 OK in 176ms (Views: 0.3ms | ActiveRecord: 115.4ms | Allocations: 6533)
+
+
