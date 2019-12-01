@@ -14,3 +14,45 @@ Processing by MapsController#show as HTML
 Completed 200 OK in 176ms (Views: 0.3ms | ActiveRecord: 115.4ms | Allocations: 6533)
 
 
+Started GET "/" for ::1 at 2019-11-30 22:57:17 -0800
+  [1m[35m (7.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/Mackenzie/.rvm/gems/ruby-2.6.3/gems/railties-6.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/Mackenzie/.rvm/gems/ruby-2.6.3/gems/railties-6.0.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 21.7ms | Allocations: 317)
+Completed 200 OK in 50ms (Views: 38.4ms | ActiveRecord: 0.0ms | Allocations: 1605)
+
+
+Started GET "/favicon.ico" for ::1 at 2019-11-30 22:57:21 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+railties (6.0.1) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2019-11-30 23:04:15 -0800
+  [1m[35m (8.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/Mackenzie/.rvm/gems/ruby-2.6.3/gems/railties-6.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/Mackenzie/.rvm/gems/ruby-2.6.3/gems/railties-6.0.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 17.5ms | Allocations: 317)
+Completed 200 OK in 45ms (Views: 29.8ms | ActiveRecord: 0.0ms | Allocations: 1605)
+
+
