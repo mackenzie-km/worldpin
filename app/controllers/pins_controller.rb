@@ -5,22 +5,22 @@ class PinsController < ApplicationController
 
   def index
     @pins = Pin.where(map_id: params[:map_id])
-    render json: @pins.to_json
+    render json: @pins, status: 200
   end
 
   def create
     @pin = Pin.new(pin_params)
     @pin.save
-    render json: @pin.to_json
+    render json: @pin, status: 200
   end
 
   def show
-    render json: @pin.to_json
+    render json: @pin, status: 200
   end
 
   def update
     @pin.update(pin_params)
-    render json: @pin.to_json
+    render json: @pin, status: 200
   end
 
   def destroy
@@ -30,7 +30,7 @@ class PinsController < ApplicationController
   private
 
   def pin_params
-    params.permit(:id, :description, :name, :location, :map_id)
+    params.permit(:id, :description, :name, :x, :y, :map_id)
   end
 
   def find_pin(id)
