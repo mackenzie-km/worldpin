@@ -3,7 +3,9 @@ class CreatePins < ActiveRecord::Migration[6.0]
     create_table :pins do |t|
       t.integer :map_id
       t.string :name
-      t.string :location
+      t.integer :x
+      t.integer :y
+      t.string :color
       t.string :description
 
       t.timestamps

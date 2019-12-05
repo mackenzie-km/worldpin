@@ -25,7 +25,9 @@ ActiveRecord::Schema.define(version: 2019_11_29_232917) do
   create_table "pins", force: :cascade do |t|
     t.integer "map_id"
     t.string "name"
-    t.string "location"
+    t.integer "x"
+    t.integer "y"
+    t.string "color"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
