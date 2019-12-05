@@ -9,12 +9,16 @@ function pinReducer (state = [], action) {
       return {pins: [...state.pins], loading: true}
     case 'CREATE_PIN':
       return {pins: [...state.pins, { id: cuid(), name: action.data.name, x: action.data.x, y: action.data.y, description: action.data.description, color: action.data.color }], loading: false};
+    case 'DELETING_PIN':
+      return {pins: [...state.pins], loading: true}
     case 'DELETE_PIN':
       return {pins: [...state.pins.filter(x=> x.id !== action.data)], loading: false};
+    case 'EDITING_PIN':
+      return {pins: [...state.pins], loading: true}
     case 'EDIT_PIN':
       return {pins: [...state.pins.filter(x=> x.id !== action.data.id), { id: action.data.id, name: action.data.name, x: action.data.x, y: action.data.y, description: action.data.description, color: action.data.color }], loading: false};
     default:
-      return {pins: [...state], loading: false};
+      return {pins: [], loading: false};
   }
 }
 
