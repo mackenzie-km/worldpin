@@ -8,7 +8,7 @@ class PinInput extends PureComponent {
       name: !!props.currentPin ? props.currentPin.name : "",
       description: !!props.currentPin ? props.currentPin.description : "",
       color: !!props.currentPin ? props.currentPin.color : "#ffffff",
-      location: !!props.currentPin ? props.currentPin.location : [],
+      location: !!props.currentPin ? [props.currentPin.x, props.currentPin.y] : [0,0],
       id: !!props.currentPin ? props.currentPin.id : null
     }
   }

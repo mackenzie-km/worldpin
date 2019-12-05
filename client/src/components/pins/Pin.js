@@ -5,8 +5,8 @@ const Pin = (props) => {
       <div className="pin hover-div"
          style={{
            backgroundColor: props.info.color,
-           top: `${props.info.location[1]}px`,
-           left: `${props.info.location[0]}px`
+           top: `${props.info.y}px`,
+           left: `${props.info.x}px`
          }}>
          <div className='hover-div--on'>
              <button alt="edit">
