@@ -18,10 +18,6 @@ constructor(props){
     currentPin: {}
   }
 }
-//
-// componentDidMount(){
-//   this.props.fetchPins(this.props.canvasId)
-// }
 
 togglePinInput = (pinData = null) => {
   let map = document.getElementById('root')
@@ -47,14 +43,16 @@ toggleColorFilter = (event) => {
 
 handleSubmit = (event, data) => {
   event.preventDefault()
-  data.location = this.props.capturedClick
+  data.x = this.props.capturedClick[0]
+  data.y = this.props.capturedClick[1]
   this.props.createPin(data)
   this.togglePinInput(null)
 }
 
 handleEdit = (event, data) => {
   event.preventDefault()
-  data.location = this.props.capturedClick
+  data.x = this.props.capturedClick[0]
+  data.y = this.props.capturedClick[1]
   this.props.editPin(data)
   this.togglePinInput(null)
 }
@@ -96,7 +94,7 @@ deletePin = (id) => {
   }
 }
 
-const getVisiblePins = (pins, data) => {
+const getVisiblePins = (pins = [], data) => {
   switch (data.type) {
     case 'SHOW_ALL':
       return pins;
@@ -109,21 +107,13 @@ const getVisiblePins = (pins, data) => {
   }
 }
 
-// const fetchPins = function(id) {
-// return (dispatch) => {
-//   dispatch({ type: 'REQUEST_PINS' });
-//   fetch(`maps/${id}/pins`)
-//   .then(response => response.json())
-//   .then(pins => dispatch({ type: 'VIEW_PINS', pins }));
-// };
-
 const mapStateToProps = (state) => {
   return { pins: getVisiblePins(state.pinReducer, state.filterReducer) }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // fetchPins: (id) => dispatch(fetchCanvas(id)),
+    loadPins: (id) => dispatch({type: 'LOAD_PINS', id}),
     createPin: (data) => {dispatch({type: 'CREATE_PIN', data})},
     deletePin: (data) => {dispatch({type: 'DELETE_PIN', data})},
     editPin: (data) => {dispatch({type: 'EDIT_PIN', data})},
