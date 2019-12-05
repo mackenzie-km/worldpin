@@ -4,16 +4,16 @@ class MapsController < ApplicationController
   end
   def create
     @map = Map.new(map_params)
-    render json: @map.to_json
+    render json: @map, status: 200
   end
 
   def show
-    render json: @map.to_json
+    render json: @map, status: 200
   end
 
   def update
     @map.update(map_params)
-    render json: @map.to_json
+    render json: @map, status: 200
   end
 
   def destroy
