@@ -2,7 +2,6 @@ import React from 'react';
 import Pin from './Pin.js';
 
 const PinList = (props = []) => {
-  debugger
   return (
     <React.Fragment>
       {(props.pins.length > 0)

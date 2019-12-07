@@ -45,7 +45,7 @@ handleSubmit = (event, data) => {
   event.preventDefault()
   data.x = this.props.capturedClick[0]
   data.y = this.props.capturedClick[1]
-  this.props.createPin(data)
+  this.props.createPin(data, this.props.id)
   this.togglePinInput(null)
 }
 
@@ -108,13 +108,31 @@ const getVisiblePins = (pins = [], data) => {
 }
 
 const mapStateToProps = (state) => {
-  return { pins: getVisiblePins(state.pinReducer, state.filterReducer) }
+  return { pins: getVisiblePins(state.pinReducer.pins, state.filterReducer) }
 }
+
+// fetchMapInfo: (id) => {
+//   dispatch ({type: 'LOADING_MAP'});
+//   fetch(`/maps/${id}`)
+//   .then(res => res.json())
+//   .then(json => dispatch({type: 'LOAD_PINS', json}))
 
 const mapDispatchToProps = (dispatch) => {
   return {
     loadPins: (id) => dispatch({type: 'LOAD_PINS', id}),
-    createPin: (data) => {dispatch({type: 'CREATE_PIN', data})},
+    createPin: (data, id) => {
+      dispatch ({type: 'CREATING_PIN'});
+      fetch(`/maps/${id}/pins`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(data => dispatch({type: 'CREATE_PIN', data}));
+    },
     deletePin: (data) => {dispatch({type: 'DELETE_PIN', data})},
     editPin: (data) => {dispatch({type: 'EDIT_PIN', data})},
     setFilter: (data) => {dispatch({type: data.type, criteria: data.criteria})}
