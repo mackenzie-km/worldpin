@@ -142,10 +142,22 @@ const mapDispatchToProps = (dispatch) => {
           'Content-Type': 'application/json'
           }
         })
-        .then(res => res.json())
-        .then(data => dispatch({type: 'DELETE_PIN', data}));
+      .then(res => res.json())
+      .then(data => dispatch({type: 'DELETE_PIN', data}));
     },
-    editPin: (data) => {dispatch({type: 'EDIT_PIN', data})},
+    editPin: (data) => {
+      dispatch ({type: 'EDITING_PIN'});
+      fetch(`/pins/${data.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+    .then(res => res.json())
+    .then(data => dispatch({type: 'EDIT_PIN', data}))
+  },
     setFilter: (data) => {dispatch({type: data.type, criteria: data.criteria})}
   }
 }
