@@ -58,7 +58,7 @@ handleEdit = (event, data) => {
 }
 
 deletePin = (id) => {
-  this.props.deletePin(id)
+  this.props.deletePin(this.props.id, id)
 }
 
   render() {
@@ -133,7 +133,18 @@ const mapDispatchToProps = (dispatch) => {
       .then(res => res.json())
       .then(data => dispatch({type: 'CREATE_PIN', data}));
     },
-    deletePin: (data) => {dispatch({type: 'DELETE_PIN', data})},
+    deletePin: (map_id, id) => {
+      dispatch ({type: 'DELETING_PIN'});
+      fetch(`/maps/${map_id}/pins/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+          }
+        })
+        .then(res => res.json())
+        .then(data => dispatch({type: 'DELETE_PIN', data}));
+    },
     editPin: (data) => {dispatch({type: 'EDIT_PIN', data})},
     setFilter: (data) => {dispatch({type: data.type, criteria: data.criteria})}
   }
