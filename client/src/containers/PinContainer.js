@@ -111,12 +111,6 @@ const mapStateToProps = (state) => {
   return { pins: getVisiblePins(state.pinReducer.pins, state.filterReducer) }
 }
 
-// fetchMapInfo: (id) => {
-//   dispatch ({type: 'LOADING_MAP'});
-//   fetch(`/maps/${id}`)
-//   .then(res => res.json())
-//   .then(json => dispatch({type: 'LOAD_PINS', json}))
-
 const mapDispatchToProps = (dispatch) => {
   return {
     loadPins: (id) => dispatch({type: 'LOAD_PINS', id}),
