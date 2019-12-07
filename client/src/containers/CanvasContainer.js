@@ -69,7 +69,7 @@ const getVisiblePins = (pins, data) => {
 }
 
 const mapStateToProps = (state) => {
-  return { pins: getVisiblePins(state.pinReducer, state.filterReducer) }
+  return { pins: getVisiblePins(state.pinReducer.pins, state.filterReducer) }
 }
 
 const mapDispatchToProps = (dispatch) => {

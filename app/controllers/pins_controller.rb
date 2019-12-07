@@ -30,7 +30,7 @@ class PinsController < ApplicationController
   private
 
   def pin_params
-    params.permit(:id, :description, :name, :x, :y, :map_id)
+    params.permit(:id, :description, :name, :x, :y, :map_id, :color)
   end
 
   def find_pin(id)
