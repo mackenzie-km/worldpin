@@ -24,7 +24,8 @@ class PinsController < ApplicationController
   end
 
   def destroy
-    @pin.delete_all
+    @pin.delete if !!@pin
+    render json: @pin, status: 200
   end
 
   private

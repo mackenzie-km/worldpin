@@ -11,7 +11,7 @@ function pinReducer (state = [], action) {
     case 'DELETING_PIN':
       return {pins: [...state.pins], loading: true}
     case 'DELETE_PIN':
-      return {pins: [...state.pins.filter(x=> x.id !== action.data)], loading: false};
+      return {pins: [...state.pins.filter(x=> x.id !== action.data.id)], loading: false};
     case 'EDITING_PIN':
       return {pins: [...state.pins], loading: true}
     case 'EDIT_PIN':
