@@ -11,7 +11,7 @@ class CanvasContainer extends PureComponent {
   constructor(props){
     super(props)
     this.state = {
-      canvasId: props.id,
+      canvasId: props.match.params.id,
       canvasInfo: false,
       capturedClick: [],
       browserSize: {x: 1366, y: 768}
@@ -83,4 +83,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(CanvasContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CanvasContainer);
