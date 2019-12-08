@@ -4,6 +4,7 @@ class MapsController < ApplicationController
   end
   def create
     @map = Map.new(map_params)
+    @map.save
     render json: @map, status: 200
   end
 
@@ -18,6 +19,7 @@ class MapsController < ApplicationController
 
   def destroy
     @map.delete_all
+    render json: @map, status: 200
   end
 
   private
