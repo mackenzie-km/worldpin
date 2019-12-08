@@ -5,23 +5,34 @@ class CreateCanvas extends React.Component {
     super(props)
     this.state = {
       title: "My WorldPin",
-      url: null
+      url: ""
     }
   }
 
-  handleSubmit = () => {
-
+  handleSubmit = (event, data) => {
+    event.preventDefault()
+    fetch(`/maps/`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(data =>  window.location.replace(`/maps/${data.id}`))
   }
 
-  handleTitle = () => {
-
+  handleTitle = (event) => {
+    this.setState({title: event.target.value})
   }
 
-  handleUrl = () => {
-
+  handleUrl = (event) => {
+    this.setState({url: event.target.value})
   }
 
   render() {
+    console.log(this.state)
     return (
       <div id="create-canvas">
         <div className="canvas-input">
