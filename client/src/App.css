@@ -27,6 +27,7 @@ body, html {
   grid-template-rows: 10vh 90vh;
   grid-template-columns: auto 90vw auto;
   justify-items: center;
+  align-self: start;
 }
 
 
@@ -43,8 +44,9 @@ h1, h2, h3, h4, h5, h6 {
   color: #43374d;
   font-family: 'Raleway', serif;
   display: block;
-  padding: 1.5vh 1.5vw;
-  margin: 1.5%;
+  padding: 1%;
+  width: fit-content;
+  margin: 0.5%;
   background-color: rgba(210, 213, 221, 0.7);
   border-color: Transparent;
   box-shadow: 0.2vw 0.2vw 0.4vw #888888;
@@ -53,30 +55,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 4vw;
+  font-size: 3.25vw;
 }
 
 h2 {
-  font-size: 3vw;
+  font-size: 2.5vw;
 }
 
 h3 {
-  font-size: 2vw;
+  font-size: 1.75vw;
 }
+
 
 header.canvas-title {
   position: relative;
   grid-column: 2/3;
   grid-row: 1/2;
   text-align: center;
-  width: 100%;
-  margin: 2vh auto;
+  width: auto;
+  margin: 0 auto;
   z-index: 10;
   top: -.2vh;
-}
-
-.narrow {
-  max-width: 60%;
+  white-space: nowrap;
 }
 
 .canvas-map {
@@ -87,6 +87,17 @@ header.canvas-title {
   height: auto;
   grid-column: 2/3;
   grid-row: 1/3;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-attachment: fixed;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+
+.create-canvas {
+  background-image: ;
   background-repeat: no-repeat;
   background-position: top center;
   background-attachment: fixed;
@@ -188,36 +199,41 @@ input[type="submit"]:hover, .hide:hover {
 
 .canvas-input {
   grid-column: 2/3;
-  grid-row: 1/3;
-  min-width: 75%;
+  grid-row: 2/3;
+  position: relative;
+  width: 90vw;
   height: fit-content;
-  background-color: rgba(200, 200, 200, 0.5);
-  box-shadow: 0.2vw 0.2vw 0.4vw #888888;
-  margin: 1%;
+  max-height: 90vh;
+  background-color: none;
+  box-shadow: none;
   padding: 1%;
   border-color: Transparent;
   font-size: 100%;
   border-radius: 10px;
   z-index: 11;
-  top: 0px;
   text-align: center;
 }
 
 .canvas-input h1, .canvas-input h2, .canvas-input h3, .canvas-input h4 {
   background-color: none;
-  width: 60%;
+  min-width: 50vw;
   margin: 1% auto;
 }
 
 .canvas-input input[type="text"], .canvas-input input[type="submit"] {
   min-height: 5%;
-  background-color: rgba(198, 197, 185, 1);
-  min-width: 50%;
+  background-color: rgba(210, 213, 221, 0.7);
+  margin: 1% auto;
+}
+
+.canvas-input input[type="text"] {
+  min-width: 50vw;
 }
 
 .canvas-input input[type="text"], .canvas-input input[type="submit"] {
-  font-size: 1.5vw;
-  padding: 1.25%;
+  font-size: 1.25vw;
+  display: block;
+  padding: 1%;
 }
 
 .canvas-info {

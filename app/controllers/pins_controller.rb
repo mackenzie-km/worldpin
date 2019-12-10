@@ -15,7 +15,11 @@ class PinsController < ApplicationController
   end
 
   def show
-    render json: @pin, status: 200
+    if @pin
+      render json: @pin, status: 200
+    else
+      redirect_to "/404", :status => 404
+    end
   end
 
   def update

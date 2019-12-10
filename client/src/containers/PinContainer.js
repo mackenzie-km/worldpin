@@ -4,6 +4,7 @@ import PinControls from '../components/pins/PinControls.js';
 import PinList from '../components/pins/PinList.js';
 import ColorFilter from '../components/canvas/ColorFilter.js'
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 
 // Handles all of the pin logic and display
 
@@ -64,6 +65,10 @@ deletePin = (id) => {
   render() {
     return (
       <React.Fragment>
+        <Route path={`/maps/${this.props.id}/new`} render={routerProps => <PinInput {...routerProps} currentPin={this.state.currentPin}
+          handleSubmit={this.handleSubmit}
+          handleEdit={this.handleEdit}
+          hide={this.togglePinInput} /> }/>
           {!!this.state.pinControls
             ? <PinControls
               togglePinInput={this.togglePinInput}
@@ -77,6 +82,7 @@ deletePin = (id) => {
                 hide={this.togglePinInput} />
             : null}
           {<PinList
+            canvasId={this.props.id}
             browserSize={this.props.browserSize}
             togglePinInput={this.togglePinInput}
             pins={this.props.pins}
