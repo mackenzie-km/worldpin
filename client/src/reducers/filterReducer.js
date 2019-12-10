@@ -1,4 +1,4 @@
-const filterReducer = (state = 'SHOW_ALL', action = {type: 'SHOW_ALL', criteria: null}) => {
+const filterReducer = (state = [], action) => {
   switch (action.type) {
     case 'SHOW_ALL':
       return {type: 'SHOW_ALL', criteria: null}
@@ -7,7 +7,7 @@ const filterReducer = (state = 'SHOW_ALL', action = {type: 'SHOW_ALL', criteria:
     case 'SHOW_PINS_BY_COLOR':
       return {type: 'SHOW_PINS_BY_COLOR', criteria: action.criteria}
     default:
-      return state
+      return {type: 'SHOW_ALL', criteria: null}
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import CanvasMap from './canvas/CanvasMap.js';
 
-class CreateCanvas extends React.Component {
+class Home extends React.Component {
   constructor(props){
     super(props)
     this.state = {
@@ -57,4 +57,4 @@ class CreateCanvas extends React.Component {
   }
 }
 
-export default CreateCanvas;
+export default Home;
