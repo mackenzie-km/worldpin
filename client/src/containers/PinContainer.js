@@ -22,11 +22,11 @@ class PinContainer extends PureComponent {
 constructor(props){
   super(props)
   this.state = {
-    canvasId: props.id,
-    pinInput: false,
+    canvasId: props.router.params.id,
+    pinInput: props.pinInput,
     pinControls: false,
     colorFilter: false,
-    canvasInfo: false,
+    canvasInfo: props.canvasInfo,
     currentPin: {},
     capturedClick: [],
     browserSize: {x: 1366, y: 768}
@@ -105,32 +105,35 @@ deletePin = (id) => {
       <CanvasTitle title={"ten characters"} id={11111} />
       <CanvasMap url={null} handleMapClick={this.handleMapClick} />
       <button id="canvas-info" onClick={this.toggleInfo} alt="info"><i className="material-icons">info</i></button>
-      {!!this.state.canvasInfo ? <CanvasInfo /> : null }
-        <Route path={`/maps/${this.props.id}/new`} render={routerProps => <PinInput {...routerProps} currentPin={this.state.currentPin}
+      <Route path={`${this.props.router.url}/info`} component={CanvasInfo} />
+        {!!this.state.pinControls
+          ? <PinControls
+            togglePinInput={this.togglePinInput}
+            toggleColorFilter={this.toggleColorFilter} />
+          : null }
+      <Route path={`${this.props.router.url}/pins/new`} render={()=> (
+        <PinInput
+          currentPin={this.state.currentPin}
           handleSubmit={this.handleSubmit}
           handleEdit={this.handleEdit}
-          hide={this.togglePinInput} /> }/>
-          {!!this.state.pinControls
-            ? <PinControls
-              togglePinInput={this.togglePinInput}
-              toggleColorFilter={this.toggleColorFilter} />
-            : null }
-          {!!this.state.pinInput
-            ? <PinInput
-              currentPin={this.state.currentPin}
-                handleSubmit={this.handleSubmit}
-                handleEdit={this.handleEdit}
-                hide={this.togglePinInput} />
-            : null}
-          {<PinList
-            canvasId={this.props.id}
-            browserSize={this.state.browserSize}
-            togglePinInput={this.togglePinInput}
-            pins={this.props.pins}
-            delete={this.deletePin} />}
-          {!!this.state.colorFilter
-            ? <ColorFilter filterByColor={this.filterByColor} />
-            : null}
+          hide={this.togglePinInput} />
+      )} />
+      <Route path={`${this.props.router.url}/pins/${this.state.currentPin.id}/edit`} render={()=> (
+        <PinInput
+          currentPin={this.state.currentPin}
+          handleSubmit={this.handleSubmit}
+          handleEdit={this.handleEdit}
+          hide={this.togglePinInput} />
+      )} />
+        {<PinList
+          canvasId={this.props.id}
+          browserSize={this.state.browserSize}
+          togglePinInput={this.togglePinInput}
+          pins={this.props.pins}
+          delete={this.deletePin} />}
+        {!!this.state.colorFilter
+          ? <ColorFilter filterByColor={this.filterByColor} />
+          : null}
           <button id="pin-controls-toggle"
             onClick={this.toggleControls}
             alt="more">
@@ -167,3 +170,5 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PinContainer);
+
+/* Write what I learned about routing and also putting actions in api.js */
