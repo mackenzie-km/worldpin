@@ -9,7 +9,11 @@ class MapsController < ApplicationController
   end
 
   def show
-    render json: @map, status: 200
+    if @map
+      render json: @map, status: 200
+    else
+      redirect_to "/404", :status => 404
+    end
   end
 
   def update

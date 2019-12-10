@@ -1,11 +1,13 @@
 import React from 'react';
+import CanvasMap from './canvas/CanvasMap.js';
 
 class CreateCanvas extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      title: "My WorldPin",
-      url: ""
+      title: "",
+      url: "",
+      id: null
     }
   }
 
@@ -35,16 +37,19 @@ class CreateCanvas extends React.Component {
     console.log(this.state)
     return (
       <div id="create-canvas">
+        <CanvasMap url={null} handleMapClick={()=>null} />
+        <header className="canvas-title">
+          <h1>Welcome to WorldPin!</h1>
+        </header>
         <div className="canvas-input">
-          <h2>Create a New Map</h2>
           <form onSubmit={event => this.handleSubmit(event, this.state)}>
-            <h3>Title:</h3>
-              <h4>Choose a title - preferrably 10 characters or less.</h4>
-              <input type="text" onChange={this.handleTitle} value={this.state.title} name="title" id="title" />
-            <h3>Map URL:</h3>
-              <h4>Input a url. To use default map, leave blank.</h4>
+            <h3>Choose a title - preferrably 10 characters or less</h3>
+              <input type="text" onChange={this.handleTitle} placeholder="My WorldPin Title" value={this.state.title} name="title" id="title" />
+            <h3>Input a url. To use default map, leave blank.</h3>
               <input type="text" placeholder="N/A" onChange={this.handleUrl} value={this.state.url} name="url" id="url" />
-              <input type="submit" />
+            <h3><u>OR</u> open old map using an existing map ID</h3>
+              <input type="text" placeholder="Type ID here" onChange={this.handleId} value={this.state.id} name="id" id="id" />
+            <input type="submit" />
           </form>
         </div>
       </div>

@@ -3,7 +3,11 @@ function pinReducer (state = [], action) {
     case 'LOADING_MAP':
       return {pins: [...state.pins], loading: true}
     case 'LOAD_PINS':
-      return {pins: action.json.pins, loading: false}
+      if (!!action.json) {
+        return {pins: action.json.pins, loading: false}
+      } else {
+        return {pins: [], loading: false}
+      }
     case 'CREATING_PIN':
       return {pins: [...state.pins], loading: true}
     case 'CREATE_PIN':

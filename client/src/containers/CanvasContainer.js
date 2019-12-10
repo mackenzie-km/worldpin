@@ -7,7 +7,6 @@ import PinContainer from './PinContainer';
 
 // All of our canvas components (title, map, info, input) & pin container called & manipulated here
 class CanvasContainer extends PureComponent {
-
   constructor(props){
     super(props)
     this.state = {
