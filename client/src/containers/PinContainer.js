@@ -2,7 +2,10 @@ import React, { PureComponent } from 'react'
 import PinInput from '../components/pins/PinInput.js';
 import PinControls from '../components/pins/PinControls.js';
 import PinList from '../components/pins/PinList.js';
-import ColorFilter from '../components/canvas/ColorFilter.js'
+import ColorFilter from '../components/canvas/ColorFilter.js';
+import CanvasTitle from '../components/canvas/CanvasTitle.js';
+import CanvasMap from '../components/canvas/CanvasMap.js';
+import CanvasInfo from '../components/canvas/CanvasInfo';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
@@ -13,11 +16,39 @@ class PinContainer extends PureComponent {
 constructor(props){
   super(props)
   this.state = {
+    canvasId: props.id,
     pinInput: false,
     pinControls: false,
     colorFilter: false,
-    currentPin: {}
+    canvasInfo: false,
+    currentPin: {},
+    capturedClick: [],
+    browserSize: {x: 1366, y: 768}
   }
+}
+
+componentDidMount() {
+  this.props.fetchMapInfo(this.state.canvasId)
+}
+
+
+toggleInfo = (event) => {
+  event.preventDefault();
+  this.setState({canvasInfo: !this.state.canvasInfo})
+}
+
+handleMapClick = (event) => {
+  let x = event.clientX;
+  let y = event.clientY;
+  console.log({capturedClick: [x, y]})
+  this.setState({ capturedClick: [x, y] })
+}
+
+calculateOffset = () => {
+  let element = document.getElementsByClassName("canvas-map")[0];
+  let rect = element.getBoundingClientRect();
+  let currentSize = {x: rect.width, y: rect.height};
+  this.setState({ browserSize: currentSize  })
 }
 
 togglePinInput = (pinData = null) => {
@@ -44,16 +75,16 @@ toggleColorFilter = (event) => {
 
 handleSubmit = (event, data) => {
   event.preventDefault()
-  data.x = this.props.capturedClick[0]
-  data.y = this.props.capturedClick[1]
+  data.x = this.state.capturedClick[0]
+  data.y = this.state.capturedClick[1]
   this.props.createPin(data, this.props.id)
   this.togglePinInput(null)
 }
 
 handleEdit = (event, data) => {
   event.preventDefault()
-  data.x = this.props.capturedClick[0]
-  data.y = this.props.capturedClick[1]
+  data.x = this.state.capturedClick[0]
+  data.y = this.state.capturedClick[1]
   this.props.editPin(data)
   this.togglePinInput(null)
 }
@@ -64,7 +95,11 @@ deletePin = (id) => {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="canvas-container">
+      <CanvasTitle title={"ten characters"} id={11111} />
+      <CanvasMap url={null} handleMapClick={this.handleMapClick} />
+      <button id="canvas-info" onClick={this.toggleInfo} alt="info"><i className="material-icons">info</i></button>
+      {!!this.state.canvasInfo ? <CanvasInfo /> : null }
         <Route path={`/maps/${this.props.id}/new`} render={routerProps => <PinInput {...routerProps} currentPin={this.state.currentPin}
           handleSubmit={this.handleSubmit}
           handleEdit={this.handleEdit}
@@ -83,7 +118,7 @@ deletePin = (id) => {
             : null}
           {<PinList
             canvasId={this.props.id}
-            browserSize={this.props.browserSize}
+            browserSize={this.state.browserSize}
             togglePinInput={this.togglePinInput}
             pins={this.props.pins}
             delete={this.deletePin} />}
@@ -95,7 +130,7 @@ deletePin = (id) => {
             alt="more">
             <i className="material-icons">settings</i>
           </button>
-      </React.Fragment>
+      </div>
     )
   }
 }
@@ -119,7 +154,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadPins: (id) => dispatch({type: 'LOAD_PINS', id}),
+    fetchMapInfo: (id) => {
+      dispatch ({type: 'LOADING_MAP'});
+      fetch(`/maps/${id}`)
+      .then(res => res.json())
+      .then(json => dispatch({type: 'LOAD_PINS', json}))
+    },
     createPin: (data, id) => {
       dispatch ({type: 'CREATING_PIN'});
       fetch(`/maps/${id}/pins`, {
