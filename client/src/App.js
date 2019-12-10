@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import CanvasContainer from './containers/CanvasContainer.js';
+import PinContainer from './containers/PinContainer.js';
 import Home from './components/Home.js';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const App = (props) => {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/maps/:id" render={routerProps => <CanvasContainer {...routerProps} />} />
+          <Route path="/maps/:id" render={(props) => <PinContainer id={props.match.params.id} />} />
           <Route path="/" component={Home} />
           <Redirect from="*" to="/" />
         </Switch>
