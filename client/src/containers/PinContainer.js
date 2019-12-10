@@ -6,6 +6,12 @@ import ColorFilter from '../components/canvas/ColorFilter.js';
 import CanvasTitle from '../components/canvas/CanvasTitle.js';
 import CanvasMap from '../components/canvas/CanvasMap.js';
 import CanvasInfo from '../components/canvas/CanvasInfo';
+import {
+  fetchMapInfo,
+  createPin,
+  deletePin,
+  editPin,
+  setFilter } from '../actions/api.js';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
@@ -135,7 +141,7 @@ deletePin = (id) => {
   }
 }
 
-const getVisiblePins = (pins = [], data) => {
+const getVisiblePins = (pins = [], data = {}) => {
   switch (data.type) {
     case 'SHOW_ALL':
       return pins;
@@ -152,54 +158,12 @@ const mapStateToProps = (state) => {
   return { pins: getVisiblePins(state.pinReducer.pins, state.filterReducer) }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchMapInfo: (id) => {
-      dispatch ({type: 'LOADING_MAP'});
-      fetch(`/maps/${id}`)
-      .then(res => res.json())
-      .then(json => dispatch({type: 'LOAD_PINS', json}))
-    },
-    createPin: (data, id) => {
-      dispatch ({type: 'CREATING_PIN'});
-      fetch(`/maps/${id}/pins`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(res => res.json())
-      .then(data => dispatch({type: 'CREATE_PIN', data}));
-    },
-    deletePin: (map_id, id) => {
-      dispatch ({type: 'DELETING_PIN'});
-      fetch(`/maps/${map_id}/pins/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-          }
-        })
-      .then(res => res.json())
-      .then(data => dispatch({type: 'DELETE_PIN', data}));
-    },
-    editPin: (data) => {
-      dispatch ({type: 'EDITING_PIN'});
-      fetch(`/pins/${data.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-    .then(res => res.json())
-    .then(data => dispatch({type: 'EDIT_PIN', data}))
-  },
-    setFilter: (data) => {dispatch({type: data.type, criteria: data.criteria})}
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+    fetchMapInfo: (id) => dispatch(fetchMapInfo(id)),
+    createPin: (data, id) => dispatch(createPin(data, id)),
+    deletePin: (map_id, id) => dispatch(deletePin(map_id, id)),
+    editPin: (data) => dispatch(editPin(data)),
+    setFilter: (data) => dispatch(setFilter(data)),
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(PinContainer);
