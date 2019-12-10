@@ -10,7 +10,27 @@ const App = (props) => {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/maps/:id" render={(props) => <PinContainer id={props.match.params.id} />} />
+          <Route path="/maps/:id" render={(props) => (
+            <PinContainer
+              router={props.match}
+              pinInput={false}
+              canvasInfo={false}
+             />
+          )}/>
+          <Route path="/maps/:id/pins/new" render={(props) => (
+            <PinContainer
+              router={props.match}
+              pinInput={true}
+              canvasInfo={false}
+             />
+          )}/>
+          <Route path="/maps/:id/info" render={(props) => (
+            <PinContainer
+              router={props.match}
+              pinInput={false}
+              canvasInfo={true}
+             />
+          )}/>
           <Route path="/" component={Home} />
           <Redirect from="*" to="/" />
         </Switch>
@@ -20,3 +40,5 @@ const App = (props) => {
 }
 
 export default App;
+
+/* Note - when to use ()? */
