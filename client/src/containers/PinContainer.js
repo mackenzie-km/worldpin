@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
 import PinInput from '../components/pins/PinInput.js';
 import PinControls from '../components/pins/PinControls.js';
 import PinList from '../components/pins/PinList.js';
@@ -6,6 +6,7 @@ import ColorFilter from '../components/canvas/ColorFilter.js';
 import CanvasTitle from '../components/canvas/CanvasTitle.js';
 import CanvasMap from '../components/canvas/CanvasMap.js';
 import CanvasInfo from '../components/canvas/CanvasInfo';
+import { withRouter } from 'react-router';
 import {
   fetchMapInfo,
   createPin,
@@ -18,15 +19,13 @@ import { Route } from 'react-router-dom';
 // Handles all of the pin logic and display
 
 class PinContainer extends PureComponent {
-
 constructor(props){
   super(props)
   this.state = {
     canvasId: props.router.params.id,
-    pinInput: props.pinInput,
+    url: props.router.url,
     pinControls: false,
     colorFilter: false,
-    canvasInfo: props.canvasInfo,
     currentPin: {},
     capturedClick: [],
     browserSize: {x: 1366, y: 768}
@@ -40,7 +39,9 @@ componentDidMount() {
 
 toggleInfo = (event) => {
   event.preventDefault();
-  this.setState({canvasInfo: !this.state.canvasInfo})
+  this.props.history.location.pathname === this.state.url
+    ? this.props.history.push(`${this.state.url}/info`)
+    : this.props.history.replace(`${this.state.url}`)
 }
 
 handleMapClick = (event) => {
@@ -58,8 +59,15 @@ calculateOffset = () => {
 }
 
 togglePinInput = (pinData = null) => {
+  this.setState({currentPin: pinData})
+  if (this.props.history.location.pathname !== this.state.url) {
+    this.props.history.replace(`${this.state.url}`)
+  } else if (!!pinData) {
+    this.props.history.push(`${this.state.url}/pins/${pinData.id}/edit`)
+  } else {
+    this.props.history.push(`${this.state.url}/pins/new`)
+  }
   let map = document.getElementById('root')
-  this.setState({pinInput: !this.state.pinInput, currentPin: pinData})
   !!this.state.pinInput ? map.style.cursor="default" : map.style.cursor="crosshair";
 }
 
@@ -105,20 +113,20 @@ deletePin = (id) => {
       <CanvasTitle title={"ten characters"} id={11111} />
       <CanvasMap url={null} handleMapClick={this.handleMapClick} />
       <button id="canvas-info" onClick={this.toggleInfo} alt="info"><i className="material-icons">info</i></button>
-      <Route path={`${this.props.router.url}/info`} component={CanvasInfo} />
+      <Route path={`${this.state.url}/info`} component={CanvasInfo} />
         {!!this.state.pinControls
           ? <PinControls
             togglePinInput={this.togglePinInput}
             toggleColorFilter={this.toggleColorFilter} />
           : null }
-      <Route path={`${this.props.router.url}/pins/new`} render={()=> (
+      <Route path={`${this.state.url}/pins/new`} render={()=> (
         <PinInput
           currentPin={this.state.currentPin}
           handleSubmit={this.handleSubmit}
           handleEdit={this.handleEdit}
           hide={this.togglePinInput} />
       )} />
-      <Route path={`${this.props.router.url}/pins/${this.state.currentPin.id}/edit`} render={()=> (
+      <Route path={`${this.state.url}/pins/:id/edit`} render={()=> (
         <PinInput
           currentPin={this.state.currentPin}
           handleSubmit={this.handleSubmit}
@@ -126,7 +134,7 @@ deletePin = (id) => {
           hide={this.togglePinInput} />
       )} />
         {<PinList
-          canvasId={this.props.id}
+          canvasId={this.props.canvasId}
           browserSize={this.state.browserSize}
           togglePinInput={this.togglePinInput}
           pins={this.props.pins}
@@ -169,6 +177,6 @@ const mapDispatchToProps = (dispatch) => ({
     setFilter: (data) => dispatch(setFilter(data)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(PinContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PinContainer));
 
 /* Write what I learned about routing and also putting actions in api.js */
