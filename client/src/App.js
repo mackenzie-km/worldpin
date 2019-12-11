@@ -11,25 +11,7 @@ const App = (props) => {
       <Router>
         <Switch>
           <Route path="/maps/:id" render={(props) => (
-            <PinContainer
-              router={props.match}
-              pinInput={false}
-              canvasInfo={false}
-             />
-          )}/>
-          <Route path="/maps/:id/pins/new" render={(props) => (
-            <PinContainer
-              router={props.match}
-              pinInput={true}
-              canvasInfo={false}
-             />
-          )}/>
-          <Route path="/maps/:id/info" render={(props) => (
-            <PinContainer
-              router={props.match}
-              pinInput={false}
-              canvasInfo={true}
-             />
+            <PinContainer router={props.match} />
           )}/>
           <Route path="/" component={Home} />
           <Redirect from="*" to="/" />
