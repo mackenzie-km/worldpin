@@ -10,6 +10,7 @@ const App = (props) => {
     <div className="App">
       <Router>
         <Switch>
+          <Route path="/maps/new" component={Home} />
           <Route path="/maps/:id" render={(props) => (
             <PinContainer router={props.match} />
           )}/>
