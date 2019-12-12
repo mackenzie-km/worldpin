@@ -109,45 +109,45 @@ deletePin = (id) => {
 
   render() {
     return (
-      <div className="canvas-container">
-      <CanvasTitle title={this.props.title} id={this.state.canvasId} />
-      <CanvasMap url={this.props.url} handleMapClick={this.handleMapClick} />
-      <button id="canvas-info" onClick={this.toggleInfo} alt="info"><i className="material-icons">info</i></button>
-      <Route path={`${this.state.url}/info`} component={CanvasInfo} />
-        {!!this.state.pinControls
-          ? <PinControls
-            togglePinInput={this.togglePinInput}
-            toggleColorFilter={this.toggleColorFilter} />
-          : null }
-      <Route path={`${this.state.url}/pins/new`} render={()=> (
-        <PinInput
-          currentPin={this.state.currentPin}
-          handleSubmit={this.handleSubmit}
-          handleEdit={this.handleEdit}
-          hide={this.togglePinInput} />
-      )} />
-      <Route path={`${this.state.url}/pins/:id/edit`} render={()=> (
-        <PinInput
-          currentPin={this.state.currentPin}
-          handleSubmit={this.handleSubmit}
-          handleEdit={this.handleEdit}
-          hide={this.togglePinInput} />
-      )} />
-        {<PinList
-          canvasId={this.props.canvasId}
-          browserSize={this.state.browserSize}
-          togglePinInput={this.togglePinInput}
-          pins={this.props.pins}
-          delete={this.deletePin} />}
-        {!!this.state.colorFilter
-          ? <ColorFilter filterByColor={this.filterByColor} />
-          : null}
-          <button id="pin-controls-toggle"
-            onClick={this.toggleControls}
-            alt="more">
-            <i className="material-icons">settings</i>
-          </button>
-      </div>
+      <React.Fragment>
+        <div className="container">
+        <CanvasTitle title={this.props.title} id={this.state.canvasId} />
+        <CanvasMap url={this.props.url} handleMapClick={this.handleMapClick} />
+          <Route path={`${this.state.url}/pins/new`} render={()=> (
+            <PinInput
+              currentPin={this.state.currentPin}
+              handleSubmit={this.handleSubmit}
+              handleEdit={this.handleEdit}
+              hide={this.togglePinInput} />
+          )} />
+          <Route path={`${this.state.url}/pins/:id/edit`} render={()=> (
+            <PinInput
+              currentPin={this.state.currentPin}
+              handleSubmit={this.handleSubmit}
+              handleEdit={this.handleEdit}
+              hide={this.togglePinInput} />
+          )} />
+            {<PinList
+              canvasId={this.props.canvasId}
+              browserSize={this.state.browserSize}
+              togglePinInput={this.togglePinInput}
+              pins={this.props.pins}
+              delete={this.deletePin} />}
+            {!!this.state.colorFilter
+              ? <ColorFilter filterByColor={this.filterByColor} />
+              : null}
+        </div>
+        <button id="pin-controls-toggle" onClick={this.toggleControls} alt="more">
+          <i className="material-icons">settings</i>
+          {!!this.state.pinControls
+            ? <PinControls
+              togglePinInput={this.togglePinInput}
+              toggleColorFilter={this.toggleColorFilter} />
+            : null }
+        </button>
+        <button id="canvas-info" onClick={this.toggleInfo} alt="info"><i className="material-icons">info</i></button>
+        <Route path={`${this.state.url}/info`} component={CanvasInfo} />
+      </React.Fragment>
     )
   }
 }

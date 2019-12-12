@@ -9,25 +9,16 @@ body, html {
   background-attachment: fixed;
   background-size: contain;
   margin: 0px;
-  height: 100vh;
-  width: 100vw;
+  height: 99%;
+  width: 100%;
   text-align: center;
+  display: inline-grid;
+  grid-template-rows: 10vh 90vh;
+  grid-template-columns: 1fr 157vh 1fr;
 }
 
 .App-link {
   color: #09d3ac;
-}
-
-.canvas-container, #create-canvas {
-  display: inline-grid;
-  max-height: 100vh;
-  max-width: 100vw;
-  height: auto;
-  width: auto;
-  grid-template-rows: 10vh 90vh;
-  grid-template-columns: auto 90vw auto;
-  justify-items: center;
-  align-self: start;
 }
 
 
@@ -46,8 +37,8 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   padding: 1%;
   width: fit-content;
-  margin: 0.5%;
-  background-color: rgba(210, 213, 221, 0.7);
+  margin: 0 auto;
+  background-color: rgba(210, 213, 221, 0.95);
   border-color: Transparent;
   box-shadow: 0.2vw 0.2vw 0.4vw #888888;
   z-index: 10;
@@ -55,17 +46,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3.25vw;
+   font-size: 6vh;
 }
-
 h2 {
-  font-size: 2.5vw;
+  font-size: 4vh;
 }
-
 h3 {
-  font-size: 1.75vw;
+  font-size: 2vh;
 }
-
+h4 {
+  font-size: 1.5vh;
+}
 
 header.canvas-title {
   position: relative;
@@ -79,57 +70,24 @@ header.canvas-title {
   white-space: nowrap;
 }
 
-.canvas-map {
-  margin: 0;
-  max-width: 90vw;
-  max-height: 100vh;
-  width: auto;
-  height: auto;
+.container {
+  position: relative;
+  margin-top: 0px;
+  width: 157vh;
+  height: 99vh;
   grid-column: 2/3;
   grid-row: 1/3;
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-attachment: fixed;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-size: contain;
+  background-color: #C6C5B9;
+  box-shadow: 0.2vw 0.2vw 0.4vw #888888;
+  border-radius: 50px;
+  overflow: hidden;
 }
 
-.create-canvas {
-  background-image: ;
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-attachment: fixed;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-size: contain;
-}
-
-.canvas-map #canvas {
+.container #world-map {
   position: relative;
-  top: 0px;
-  z-index: 1;
-  max-width: 90vw;
-  max-height: 100vh;
-  height: auto;
-}
-
-.canvas-map #world-map {
-  position: absolute;
-  left: auto;
-  top: 0px;
   z-index: 2;
-  max-width: 90vw;
-  max-height: 100vh;
-  height: auto;
-}
-
-.canvas::after {
-  padding-top: 56.25%;
-  /* 16:9 ratio */
-  display: block;
+  height: 100%;
+  top: -10vh;
 }
 
 button {
@@ -193,20 +151,27 @@ input[type="submit"]:hover, .hide:hover {
   border-radius: 10px;
   z-index: 11;
   align-self: end;
-  right: 0;
   bottom: 0;
+}
+
+.pin-input{
+  right: 0;
+}
+
+.color-input{
+  left: 0;
 }
 
 .canvas-input {
   grid-column: 2/3;
   grid-row: 2/3;
   position: relative;
-  width: 90vw;
+  width: 60%;
+  margin: auto;
   height: fit-content;
   max-height: 90vh;
   background-color: none;
   box-shadow: none;
-  padding: 1%;
   border-color: Transparent;
   font-size: 100%;
   border-radius: 10px;
@@ -214,26 +179,34 @@ input[type="submit"]:hover, .hide:hover {
   text-align: center;
 }
 
-.canvas-input h1, .canvas-input h2, .canvas-input h3, .canvas-input h4 {
-  background-color: none;
-  min-width: 50vw;
-  margin: 1% auto;
+.canvas-input h3 {
+  background-color: rgba(210, 213, 221, 0.95);
 }
 
-.canvas-input input[type="text"], .canvas-input input[type="submit"] {
-  min-height: 5%;
-  background-color: rgba(210, 213, 221, 0.7);
+.canvas-input h1, .canvas-input h2, .canvas-input h3, .canvas-input h4 {
+  background-color: none;
+  width: auto;
   margin: 1% auto;
 }
 
 .canvas-input input[type="text"] {
-  min-width: 50vw;
+  width: 98%;
+}
+
+.canvas-input input[type="submit"] {
+  width: 100%;
 }
 
 .canvas-input input[type="text"], .canvas-input input[type="submit"] {
+  min-height: 5%;
+  background-color: rgba(210, 213, 221, 0.95);
+  margin: 1% auto;
   font-size: 1.25vw;
   display: block;
   padding: 1%;
+  border-color: Transparent;
+  box-shadow: 0.2vw 0.2vw 0.4vw #888888;
+  border-radius: 10px;
 }
 
 .canvas-info {
@@ -253,11 +226,6 @@ input[type="submit"]:hover, .hide:hover {
   vertical-align: bottom;
   font-size: 1.2vw;
   border-radius: 10px;
-}
-
-.pin-container {
-  grid-column: 2/3;
-  grid-row: 2/2;
 }
 
 
@@ -282,7 +250,9 @@ button#canvas-info {
   display: inline-block;
   grid-column: 3/4;
   grid-row: 1/2;
-  margin: 0 auto;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: 3%;
   z-index: 11;
 }
 
@@ -291,15 +261,17 @@ button#pin-controls-toggle {
   max-width: 5vw;
   height: fit-content;
   display: inline-block;
+  margin-top: 0;
+  margin-right: auto;
+  margin-left: 3%;
   grid-column: 1/2;
   grid-row: 1/2;
-  margin: 0 auto;
   z-index: 11;
 }
 
 .pin-controls {
   display: inline-block;
-  width: fit-content;
+  max-width: 5vw;
   height: fit-content;
   grid-column: 1/2;
   grid-row: 1/3;
@@ -307,18 +279,15 @@ button#pin-controls-toggle {
   z-index: 11;
   align-self: end;
 }
-
+/* need to study how thisworks */
 .pin {
   position: absolute;
-  grid-column: 2/3;
-  grid-row: 1/3;
   z-index: 100;
-  display: inline-block;
-  width: .5vw;
-  height: .5vw;
-  border: 0.1vw solid Transparent;
+  display: block;
+  width: 0.7vh;
+  height: 0.7vh;
+  border: 0.5vh solid Transparent;
   border-radius: 50%;
-  vertical-align: middle;
 }
 
 .hover-div .hover-div--on {
@@ -345,17 +314,5 @@ button#pin-controls-toggle {
 @media screen and (max-width: 750px) {
   .canvas-input {
     width: 90%;
-  }
-  h1 {
-     font-size: 4vw;
-  }
-  h2 {
-    font-size: 3vw;
-  }
-  h3 {
-    font-size: 2.5vw;
-  }
-  h4 {
-    font-size: 2vw;
   }
 }
