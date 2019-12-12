@@ -9580,3 +9580,167 @@ Processing by MapsController#show as */*
 Completed 200 OK in 439ms (Views: 5.1ms | ActiveRecord: 431.0ms | Allocations: 1934)
 
 
+Started GET "/maps/9" for 127.0.0.1 at 2019-12-12 11:07:15 -0800
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MapsController#show as */*
+  Parameters: {"id"=>"9"}
+  [1m[36mMap Load (0.7ms)[0m  [1m[34mSELECT "maps".* FROM "maps" WHERE "maps"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/maps_controller.rb:36:in `find_map'
+[active_model_serializers]   [1m[36mPin Load (0.7ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 9]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:13:in `show'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (56.78ms)
+Completed 200 OK in 141ms (Views: 85.7ms | ActiveRecord: 14.7ms | Allocations: 11160)
+
+
+Started POST "/maps/" for 127.0.0.1 at 2019-12-12 11:10:28 -0800
+Processing by MapsController#create as JSON
+  Parameters: {"title"=>"", "url"=>"", "id"=>nil, "map"=>{"id"=>nil, "title"=>"", "url"=>""}}
+[31mUnpermitted parameter: :map[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/maps_controller.rb:7:in `create'
+  [1m[36mMap Create (11.0ms)[0m  [1m[32mINSERT INTO "maps" ("title", "url", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", ""], ["url", ""], ["created_at", "2019-12-12 19:10:28.170254"], ["updated_at", "2019-12-12 19:10:28.170254"]]
+  ↳ app/controllers/maps_controller.rb:7:in `create'
+  [1m[35m (22.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/maps_controller.rb:7:in `create'
+[active_model_serializers]   [1m[36mPin Load (0.8ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 10]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:8:in `create'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (16.87ms)
+Completed 200 OK in 94ms (Views: 17.8ms | ActiveRecord: 35.0ms | Allocations: 3815)
+
+
+Started GET "/maps/10" for 127.0.0.1 at 2019-12-12 11:10:29 -0800
+Processing by MapsController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mMap Load (1.0ms)[0m  [1m[34mSELECT "maps".* FROM "maps" WHERE "maps"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/maps_controller.rb:36:in `find_map'
+[active_model_serializers]   [1m[36mPin Load (2.4ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 10]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:13:in `show'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (10.6ms)
+Completed 200 OK in 18ms (Views: 8.9ms | ActiveRecord: 3.4ms | Allocations: 1947)
+
+
+Started GET "/maps/10" for 127.0.0.1 at 2019-12-12 11:11:53 -0800
+Processing by MapsController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mMap Load (5.9ms)[0m  [1m[34mSELECT "maps".* FROM "maps" WHERE "maps"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/maps_controller.rb:36:in `find_map'
+[active_model_serializers]   [1m[36mPin Load (15.9ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 10]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:13:in `show'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (241.2ms)
+Completed 200 OK in 300ms (Views: 230.9ms | ActiveRecord: 21.9ms | Allocations: 1947)
+
+
+Started GET "/maps/10" for 127.0.0.1 at 2019-12-12 11:16:29 -0800
+Processing by MapsController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mMap Load (8.5ms)[0m  [1m[34mSELECT "maps".* FROM "maps" WHERE "maps"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/maps_controller.rb:36:in `find_map'
+[active_model_serializers]   [1m[36mPin Load (2.9ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 10]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:13:in `show'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (29.58ms)
+Completed 200 OK in 61ms (Views: 30.1ms | ActiveRecord: 11.4ms | Allocations: 1947)
+
+
+Started POST "/maps/" for 127.0.0.1 at 2019-12-12 11:16:35 -0800
+Processing by MapsController#create as JSON
+  Parameters: {"title"=>"", "url"=>"", "id"=>nil, "map"=>{"id"=>nil, "title"=>"", "url"=>""}}
+[31mUnpermitted parameter: :map[0m
+  [1m[35m (2.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/maps_controller.rb:7:in `create'
+  [1m[36mMap Create (1.5ms)[0m  [1m[32mINSERT INTO "maps" ("title", "url", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", ""], ["url", ""], ["created_at", "2019-12-12 19:16:35.979870"], ["updated_at", "2019-12-12 19:16:35.979870"]]
+  ↳ app/controllers/maps_controller.rb:7:in `create'
+  [1m[35m (23.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/maps_controller.rb:7:in `create'
+[active_model_serializers]   [1m[36mPin Load (0.7ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 11]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:8:in `create'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (17.22ms)
+Completed 200 OK in 68ms (Views: 17.3ms | ActiveRecord: 27.7ms | Allocations: 3536)
+
+
+Started GET "/maps/11" for 127.0.0.1 at 2019-12-12 11:16:36 -0800
+Processing by MapsController#show as */*
+  Parameters: {"id"=>"11"}
+  [1m[36mMap Load (278.1ms)[0m  [1m[34mSELECT "maps".* FROM "maps" WHERE "maps"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/maps_controller.rb:36:in `find_map'
+[active_model_serializers]   [1m[36mPin Load (3.2ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 11]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:13:in `show'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (20.03ms)
+Completed 200 OK in 311ms (Views: 17.8ms | ActiveRecord: 281.3ms | Allocations: 1933)
+
+
+Started GET "/maps/11" for 127.0.0.1 at 2019-12-12 11:16:46 -0800
+Processing by MapsController#show as */*
+  Parameters: {"id"=>"11"}
+  [1m[36mMap Load (1.3ms)[0m  [1m[34mSELECT "maps".* FROM "maps" WHERE "maps"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/maps_controller.rb:36:in `find_map'
+[active_model_serializers]   [1m[36mPin Load (0.5ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 11]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:13:in `show'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (6.88ms)
+Completed 200 OK in 13ms (Views: 7.2ms | ActiveRecord: 1.8ms | Allocations: 1933)
+
+
+Started POST "/maps/" for 127.0.0.1 at 2019-12-12 11:17:23 -0800
+Processing by MapsController#create as JSON
+  Parameters: {"title"=>"", "url"=>"", "id"=>nil, "map"=>{"id"=>nil, "title"=>"", "url"=>""}}
+[31mUnpermitted parameter: :map[0m
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/maps_controller.rb:7:in `create'
+  [1m[36mMap Create (2.7ms)[0m  [1m[32mINSERT INTO "maps" ("title", "url", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", ""], ["url", ""], ["created_at", "2019-12-12 19:17:24.832463"], ["updated_at", "2019-12-12 19:17:24.832463"]]
+  ↳ app/controllers/maps_controller.rb:7:in `create'
+  [1m[35m (7.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/maps_controller.rb:7:in `create'
+[active_model_serializers]   [1m[36mPin Load (81.3ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 12]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:8:in `create'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (133.07ms)
+Completed 200 OK in 170ms (Views: 54.2ms | ActiveRecord: 92.0ms | Allocations: 3540)
+
+
+Started GET "/maps/10" for 127.0.0.1 at 2019-12-12 11:17:51 -0800
+Processing by MapsController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mMap Load (1.2ms)[0m  [1m[34mSELECT "maps".* FROM "maps" WHERE "maps"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/maps_controller.rb:36:in `find_map'
+[active_model_serializers]   [1m[36mPin Load (2.3ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 10]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:13:in `show'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (6.15ms)
+Completed 200 OK in 10ms (Views: 4.4ms | ActiveRecord: 3.5ms | Allocations: 1929)
+
+
+Started POST "/maps/10/pins" for 127.0.0.1 at 2019-12-12 11:18:06 -0800
+Processing by PinsController#create as JSON
+  Parameters: {"name"=>"testing123!!!", "description"=>"", "color"=>"#5dff4e", "x"=>856, "y"=>159, "id"=>nil, "map_id"=>"10", "pin"=>{"id"=>nil, "name"=>"testing123!!!", "x"=>856, "y"=>159, "color"=>"#5dff4e", "description"=>""}}
+[31mUnpermitted parameter: :pin[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/pins_controller.rb:13:in `create'
+  [1m[36mMap Load (0.7ms)[0m  [1m[34mSELECT "maps".* FROM "maps" WHERE "maps"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/pins_controller.rb:13:in `create'
+  [1m[36mPin Create (19.5ms)[0m  [1m[32mINSERT INTO "pins" ("map_id", "name", "x", "y", "color", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["map_id", 10], ["name", "testing123!!!"], ["x", 856], ["y", 159], ["color", "#5dff4e"], ["description", ""], ["created_at", "2019-12-12 19:18:06.840901"], ["updated_at", "2019-12-12 19:18:06.840901"]]
+  ↳ app/controllers/pins_controller.rb:13:in `create'
+  [1m[35m (9.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/pins_controller.rb:13:in `create'
+[active_model_serializers] Rendered PinSerializer with ActiveModelSerializers::Adapter::Attributes (0.53ms)
+Completed 200 OK in 69ms (Views: 5.1ms | ActiveRecord: 34.9ms | Allocations: 9670)
+
+
+Started GET "/maps/10" for 127.0.0.1 at 2019-12-12 11:18:08 -0800
+Processing by MapsController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mMap Load (0.6ms)[0m  [1m[34mSELECT "maps".* FROM "maps" WHERE "maps"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/maps_controller.rb:36:in `find_map'
+[active_model_serializers]   [1m[36mPin Load (0.7ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 10]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:13:in `show'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (4.84ms)
+Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 1.2ms | Allocations: 2129)
+
+
+Started GET "/maps/10" for 127.0.0.1 at 2019-12-12 11:18:21 -0800
+Processing by MapsController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mMap Load (26.9ms)[0m  [1m[34mSELECT "maps".* FROM "maps" WHERE "maps"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/maps_controller.rb:36:in `find_map'
+[active_model_serializers]   [1m[36mPin Load (0.6ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 10]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:13:in `show'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (14.5ms)
+Completed 200 OK in 59ms (Views: 17.7ms | ActiveRecord: 27.5ms | Allocations: 2111)
+
+
