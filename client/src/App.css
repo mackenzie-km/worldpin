@@ -52,10 +52,10 @@ h2 {
   font-size: 4vh;
 }
 h3 {
-  font-size: 2vh;
+  font-size: 3vh;
 }
 h4 {
-  font-size: 1.5vh;
+  font-size: 2vh;
 }
 
 header.canvas-title {
@@ -184,9 +184,10 @@ input[type="submit"]:hover, .hide:hover {
 }
 
 .canvas-input h1, .canvas-input h2, .canvas-input h3, .canvas-input h4 {
-  background-color: none;
+  background-color: rgba(27,45,50,0.7);
   width: auto;
   margin: 1% auto;
+  color: #C6C5B9;
 }
 
 .canvas-input input[type="text"] {
@@ -199,9 +200,11 @@ input[type="submit"]:hover, .hide:hover {
 
 .canvas-input input[type="text"], .canvas-input input[type="submit"] {
   min-height: 5%;
-  background-color: rgba(210, 213, 221, 0.95);
+  background-color: rgba(101,126,117,0.7);
+  color: white;
   margin: 1% auto;
-  font-size: 1.25vw;
+  font-size: 2vh;
+  font-weight: 600;
   display: block;
   padding: 1%;
   border-color: Transparent;
