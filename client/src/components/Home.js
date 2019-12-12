@@ -44,12 +44,12 @@ class Home extends React.Component {
   render() {
     console.log(this.state)
     return (
-      <div id="create-canvas">
-        <CanvasMap url={null} handleMapClick={()=>null} />
-        <header className="canvas-title">
-          <h1>Welcome to WorldPin!</h1>
-        </header>
+      <React.Fragment>
+        <div className="container">
+          <CanvasMap url={null} handleMapClick={()=>null} />
+        </div>
         <div className="canvas-input">
+            <h1>Welcome to WorldPin!</h1>
           <form onSubmit={event => this.handleSubmit(event, this.state)}>
             <h3>Choose a title - preferrably 10 characters or less</h3>
               <input type="text" onChange={this.handleTitle} placeholder="My WorldPin Title" value={this.state.title} name="title" id="title" />
@@ -60,7 +60,7 @@ class Home extends React.Component {
             <input type="submit" />
           </form>
         </div>
-      </div>
+      </React.Fragment>
     )
   }
 }
