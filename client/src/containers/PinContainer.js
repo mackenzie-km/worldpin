@@ -91,7 +91,7 @@ handleSubmit = (event, data) => {
   event.preventDefault()
   data.x = this.state.capturedClick[0]
   data.y = this.state.capturedClick[1]
-  this.props.createPin(data, this.props.id)
+  this.props.createPin(data, this.state.canvasId)
   this.togglePinInput(null)
 }
 
@@ -104,7 +104,7 @@ handleEdit = (event, data) => {
 }
 
 deletePin = (id) => {
-  this.props.deletePin(this.props.id, id)
+  this.props.deletePin(this.state.canvasId, id)
 }
 
   render() {
