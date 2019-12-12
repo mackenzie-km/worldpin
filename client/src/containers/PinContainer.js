@@ -110,8 +110,8 @@ deletePin = (id) => {
   render() {
     return (
       <div className="canvas-container">
-      <CanvasTitle title={"ten characters"} id={11111} />
-      <CanvasMap url={null} handleMapClick={this.handleMapClick} />
+      <CanvasTitle title={this.props.title} id={this.state.canvasId} />
+      <CanvasMap url={this.props.url} handleMapClick={this.handleMapClick} />
       <button id="canvas-info" onClick={this.toggleInfo} alt="info"><i className="material-icons">info</i></button>
       <Route path={`${this.state.url}/info`} component={CanvasInfo} />
         {!!this.state.pinControls
@@ -166,7 +166,11 @@ const getVisiblePins = (pins = [], data = {}) => {
 }
 
 const mapStateToProps = (state) => {
-  return { pins: getVisiblePins(state.pinReducer.pins, state.filterReducer) }
+  return {
+    pins: getVisiblePins(state.pinReducer.pins, state.filterReducer),
+    title: state.pinReducer.title,
+    url: state.pinReducer.url
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
