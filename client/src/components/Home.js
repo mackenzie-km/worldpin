@@ -13,16 +13,20 @@ class Home extends React.Component {
 
   handleSubmit = (event, data) => {
     event.preventDefault()
-    fetch(`/maps/`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(data =>  window.location.replace(`/maps/${data.id}`))
+    if (data.id){
+      window.location.replace(`/maps/${data.id}`)
+    } else {
+      fetch(`/maps/`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(data =>  window.location.replace(`/maps/${data.id}`))
+    }
   }
 
   handleTitle = (event) => {
@@ -31,6 +35,10 @@ class Home extends React.Component {
 
   handleUrl = (event) => {
     this.setState({url: event.target.value})
+  }
+
+  handleId = (event) => {
+    this.setState({id: event.target.value})
   }
 
   render() {
