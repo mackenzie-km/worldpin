@@ -7,7 +7,7 @@ class CanvasInput extends React.Component {
     this.state = {
       title: "",
       url: "",
-      id: null
+      id: ""
     }
   }
 
