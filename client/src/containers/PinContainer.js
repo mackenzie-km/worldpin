@@ -4,7 +4,7 @@ import PinControls from '../components/pins/PinControls.js';
 import PinList from '../components/pins/PinList.js';
 import ColorFilter from '../components/canvas/ColorFilter.js';
 import CanvasTitle from '../components/canvas/CanvasTitle.js';
-import CanvasMap from '../components/canvas/CanvasMap.js';
+import WorldMap from '../components/canvas/WorldMap.js';
 import CanvasInfo from '../components/canvas/CanvasInfo';
 import { withRouter } from 'react-router';
 import { fetchMapInfo, createPin, deletePin, editPin, setFilter } from '../actions/api.js';
@@ -103,7 +103,7 @@ deletePin = (id) => {
       <React.Fragment>
         <div className="container">
         <CanvasTitle title={this.props.title} id={this.state.canvasId} />
-        <CanvasMap url={this.props.url} handleMapClick={this.handleMapClick} />
+        <WorldMap url={this.props.url} handleMapClick={this.handleMapClick} />
           <Route path={`${this.state.url}/pins/new`} render={()=> (
             <PinInput
               currentPin={this.state.currentPin}
