@@ -179,11 +179,14 @@ input[type="submit"]:hover, .hide:hover {
   text-align: center;
 }
 
-.canvas-input h3 {
-  background-color: rgba(210, 213, 221, 0.95);
+.canvas-input h1 {
+  background-color: rgba(36,58,50,0.7);
+  width: auto;
+  margin: 1% auto;
+  color: #C6C5B9;
 }
 
-.canvas-input h1, .canvas-input h2, .canvas-input h3, .canvas-input h4 {
+.canvas-input h2, .canvas-input h3, .canvas-input h4 {
   background-color: rgba(27,45,50,0.7);
   width: auto;
   margin: 1% auto;
