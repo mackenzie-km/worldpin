@@ -1,13 +1,12 @@
 import React from 'react';
 
-// props.info.x
 const Pin = (props) => {
   return(
       <div className="pin hover-div"
          style={{
            backgroundColor: props.info.color,
-           top: `${33}%`,
-           left: `${33}%`
+           top: `${props.info.y}%`,
+           left: `${props.info.x}%`
          }}>
          <div className='hover-div--on'>
              <button alt="edit">

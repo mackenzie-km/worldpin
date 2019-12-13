@@ -7,12 +7,7 @@ import CanvasTitle from '../components/canvas/CanvasTitle.js';
 import CanvasMap from '../components/canvas/CanvasMap.js';
 import CanvasInfo from '../components/canvas/CanvasInfo';
 import { withRouter } from 'react-router';
-import {
-  fetchMapInfo,
-  createPin,
-  deletePin,
-  editPin,
-  setFilter } from '../actions/api.js';
+import { fetchMapInfo, createPin, deletePin, editPin, setFilter } from '../actions/api.js';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
@@ -27,7 +22,7 @@ constructor(props){
     pinControls: false,
     colorFilter: false,
     currentPin: {},
-    capturedClick: [],
+    capturedClick: {},
     browserSize: {x: 1366, y: 768}
   }
 }
@@ -47,15 +42,11 @@ toggleInfo = (event) => {
 handleMapClick = (event) => {
   let x = event.clientX;
   let y = event.clientY;
-  console.log({capturedClick: [x, y]})
-  this.setState({ capturedClick: [x, y] })
-}
-
-calculateOffset = () => {
-  let element = document.getElementsByClassName("canvas-map")[0];
-  let rect = element.getBoundingClientRect();
-  let currentSize = {x: rect.width, y: rect.height};
-  this.setState({ browserSize: currentSize  })
+  let map = document.getElementById("world-map").getBoundingClientRect();
+  let mapLeftOffset = document.getElementsByClassName("container")[0].offsetLeft
+  let mapTopOffset = document.getElementsByClassName("container")[0].offsetTop
+  let relCoords = {x: (((x-mapLeftOffset)/map.width) * 100), y: (((y-mapTopOffset)/map.height) * 100)}
+  this.setState({ capturedClick: relCoords })
 }
 
 togglePinInput = (pinData = null) => {
@@ -89,16 +80,16 @@ toggleColorFilter = (event) => {
 
 handleSubmit = (event, data) => {
   event.preventDefault()
-  data.x = this.state.capturedClick[0]
-  data.y = this.state.capturedClick[1]
+  data.x = this.state.capturedClick.x
+  data.y = this.state.capturedClick.y
   this.props.createPin(data, this.state.canvasId)
   this.togglePinInput(null)
 }
 
 handleEdit = (event, data) => {
   event.preventDefault()
-  data.x = this.state.capturedClick[0]
-  data.y = this.state.capturedClick[1]
+  data.x = this.state.capturedClick.x
+  data.y = this.state.capturedClick.y
   this.props.editPin(data)
   this.togglePinInput(null)
 }
