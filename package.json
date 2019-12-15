@@ -18,7 +18,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "webpack:deploy": "webpack --config=webpack/webpack.config.js -p",
+    "webpack:deploy": "cd client && webpack --config=webpack/webpack.config.js -p",
     "heroku-postbuild": "cd client && npm run webpack:deploy"
   },
   "eslintConfig": {
