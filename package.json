@@ -1,0 +1,29 @@
+{
+  "name": "worldpin",
+  "version": "1.0.0",
+  "description": "building api client",
+  "main": "index.js",
+  "proxy": "http://localhost:3001",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+      "build": "cd client && npm install && npm build && cd ..",
+      "deploy": "cp -a client/build/. public/",
+      "postinstall": "npm build && npm deploy && echo 'Client built!'"
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mackenzie-km/worldpin.git"
+  },
+  "keywords": [
+    "worldpin"
+  ],
+  "author": "mackenzie moore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mackenzie-km/worldpin/issues"
+  },
+  "homepage": "https://github.com/mackenzie-km/worldpin#readme"
+}

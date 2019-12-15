@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ea8b7841.chunk.css",
+    "main.js": "/static/js/main.3207ec5d.chunk.js",
+    "main.js.map": "/static/js/main.3207ec5d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3c392af6.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3c392af6.js.map",
+    "static/js/2.25484455.chunk.js": "/static/js/2.25484455.chunk.js",
+    "static/js/2.25484455.chunk.js.map": "/static/js/2.25484455.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.88db27dc75801d61169433da6274091f.js": "/precache-manifest.88db27dc75801d61169433da6274091f.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.ea8b7841.chunk.css.map": "/static/css/main.ea8b7841.chunk.css.map",
+    "static/media/worldpin_canvas_map.png": "/static/media/worldpin_canvas_map.278f1c9b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3c392af6.js",
+    "static/js/2.25484455.chunk.js",
+    "static/css/main.ea8b7841.chunk.css",
+    "static/js/main.3207ec5d.chunk.js"
+  ]
+}
