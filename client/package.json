@@ -18,8 +18,10 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "webpack:deploy": "webpack --config=webpack/webpack.config.js -p",
-    "heroku-postbuild": "cd client && npm run webpack:deploy"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
   },
   "eslintConfig": {
     "extends": "react-app"
