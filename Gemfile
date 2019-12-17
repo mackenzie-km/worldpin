@@ -6,6 +6,9 @@ ruby '2.6.3'
 # Modify JSON output with serializer
 gem 'active_model_serializers'
 
+# Use foreman to manage proxy ports 
+gem 'foreman'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
 # Use pg as the database for Active Record

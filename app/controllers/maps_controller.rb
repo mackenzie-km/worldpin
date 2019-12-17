@@ -5,7 +5,11 @@ class MapsController < ApplicationController
   def create
     @map = Map.new(map_params)
     @map.save
-    render json: @map, status: 200
+    if @map.save
+      render json: @map, status: 200
+    else
+      render json: @map.errors, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -18,12 +22,20 @@ class MapsController < ApplicationController
 
   def update
     @map.update(map_params)
-    render json: @map, status: 200
+    if @map.save
+      render json: @map, status: 200
+    else
+      render json: @map.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    @map.delete_all
-    render json: @map, status: 200
+    if @map.save
+      @map.delete_all
+      render json: @map, status: 200
+    else
+      render json: @map.errors, status: :unprocessable_entity
+    end
   end
 
   private
