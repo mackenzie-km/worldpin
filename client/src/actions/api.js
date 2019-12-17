@@ -1,7 +1,7 @@
 export function fetchMapInfo(id) {
   return (dispatch) => {
     dispatch ({type: 'LOADING_MAP'});
-    fetch(`/maps/${id}`)
+    fetch(`/api/maps/${id}`)
     .then(res => res.json())
     .then(json => dispatch({type: 'LOAD_PINS', json}))
   }
@@ -10,7 +10,7 @@ export function fetchMapInfo(id) {
 export function createPin(data, id) {
   return (dispatch) => {
     dispatch ({type: 'CREATING_PIN'});
-    fetch(`/maps/${id}/pins`, {
+    fetch(`/api/maps/${id}/pins`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -26,7 +26,7 @@ export function createPin(data, id) {
 export function deletePin(map_id, id){
   return (dispatch) => {
     dispatch ({type: 'DELETING_PIN'});
-    fetch(`/maps/${map_id}/pins/${id}`, {
+    fetch(`/api/maps/${map_id}/pins/${id}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -41,7 +41,7 @@ export function deletePin(map_id, id){
 export function editPin(data) {
   return (dispatch) => {
     dispatch ({type: 'EDITING_PIN'});
-    fetch(`/pins/${data.id}`, {
+    fetch(`/api/pins/${data.id}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
