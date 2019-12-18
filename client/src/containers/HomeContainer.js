@@ -9,7 +9,7 @@ class HomeContainer extends React.Component {
     if (data.id){
       window.location.replace(`/maps/${data.id}`)
     } else {
-      fetch(`/maps/`, {
+      fetch(`/api/maps/`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
