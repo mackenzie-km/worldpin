@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     resources :maps do
       resources :pins, except: [:edit, :new]
     end
-  end 
+  end
+
+  get '*path', to: "application#fallback_index_html"
 end

@@ -1,5 +1,6 @@
 {
   "proxy": "http://localhost:3001",
+  "homepage": "http://localhost:5000/",
   "name": "worldpin",
   "version": "0.1.0",
   "private": true,
