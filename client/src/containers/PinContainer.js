@@ -15,6 +15,7 @@ import { Route } from 'react-router-dom';
 
 class PinContainer extends PureComponent {
 constructor(props){
+  console.log(props)
   super(props)
   this.state = {
     canvasId: props.router.params.id,
