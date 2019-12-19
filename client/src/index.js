@@ -7,13 +7,12 @@ import './index.css';
 import App from './App';
 import rootReducer from './reducers';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  rootReducer, compose(
-    applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
-
-// to apply multiple reducer enhancers, need compose
+  rootReducer, composeEnhancers(
+    applyMiddleware(thunk)
+  ));
+// to apply multiple reducer enhancers, need compose per documentation
 
 ReactDOM.render(
   <Provider store={store}>

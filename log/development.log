@@ -14491,3 +14491,15 @@ Processing by MapsController#show as */*
 Completed 200 OK in 55ms (Views: 7.5ms | ActiveRecord: 45.5ms | Allocations: 2512)
 
 
+Started GET "/api/maps/1" for 127.0.0.1 at 2019-12-19 10:21:19 -0800
+  [1m[35m (4.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MapsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mMap Load (23.7ms)[0m  [1m[34mSELECT "maps".* FROM "maps" WHERE "maps"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/maps_controller.rb:48:in `find_map'
+[active_model_serializers]   [1m[36mPin Load (7.1ms)[0m  [1m[34mSELECT "pins".* FROM "pins" WHERE "pins"."map_id" = $1[0m  [["map_id", 1]]
+[active_model_serializers]   ↳ app/controllers/maps_controller.rb:17:in `show'
+[active_model_serializers] Rendered MapSerializer with ActiveModelSerializers::Adapter::Attributes (80.44ms)
+Completed 200 OK in 187ms (Views: 97.5ms | ActiveRecord: 71.1ms | Allocations: 16975)
+
+
