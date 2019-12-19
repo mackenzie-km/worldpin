@@ -66,7 +66,7 @@ togglePinInput = (pinData = null) => {
 // Turns on/off the selection cursor when triggered
 toggleCursor = () => {
   let map = document.getElementById('root')
-  !!this.state.pinInput ? map.style.cursor="default" : map.style.cursor="crosshair";
+  !(map.style.cursor==="crosshair") ? map.style.cursor="crosshair" : map.style.cursor="default";
 }
 
 // Turns on/off controls when triggered
