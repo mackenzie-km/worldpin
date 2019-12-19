@@ -13,3 +13,7 @@ Rails.application.routes.draw do
     !request.xhr? && request.format.html?
   end
 end
+
+# Best to namespace /api so that live app doesn't have duplicate routes
+# In local app, it's fine because of proxy, but not in live app
+# For all other urls - lead to fallback index so React takes over

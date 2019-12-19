@@ -1,4 +1,5 @@
 class MapsController < ApplicationController
+  # Note notation for if instance doesn't save - unprocessable
   before_action only: [:show, :edit, :update, :destroy] do
     find_map(params[:id])
   end

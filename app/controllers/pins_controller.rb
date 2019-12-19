@@ -1,4 +1,5 @@
 class PinsController < ApplicationController
+  # Note notation for if instance doesn't save - unprocessable
   before_action only: [:show, :edit, :update, :destroy] do
     find_pin(params[:id])
   end
