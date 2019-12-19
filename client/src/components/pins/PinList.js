@@ -1,6 +1,7 @@
 import React from 'react';
 import Pin from './Pin.js';
 
+// Iterates through pins in state to create each pin
 const PinList = (props = []) => {
   return (
     <React.Fragment>

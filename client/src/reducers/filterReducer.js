@@ -1,3 +1,5 @@
+// Saves filter type for mapStateToProps to use
+
 const filterReducer = (state = [], action) => {
   switch (action.type) {
     case 'SHOW_ALL':

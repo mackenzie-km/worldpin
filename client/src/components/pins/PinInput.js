@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 
+// State to track pin information during create/edit
 class PinInput extends PureComponent {
-
   constructor(props) {
     super(props)
     this.state = {

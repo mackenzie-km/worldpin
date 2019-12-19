@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Displays credits & how to start
 const CanvasInfo = () => {
   return (
     <div className="canvas-info">

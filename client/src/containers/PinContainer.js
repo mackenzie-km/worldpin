@@ -11,11 +11,9 @@ import { fetchMapInfo, createPin, deletePin, editPin, setFilter } from '../actio
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
-// Handles all of the pin logic and display
-
+// State: open inputs, url info, current pin info, and click info
 class PinContainer extends PureComponent {
 constructor(props){
-  console.log(props)
   super(props)
   this.state = {
     canvasId: props.router.params.id,
@@ -23,16 +21,17 @@ constructor(props){
     pinControls: false,
     colorFilter: false,
     currentPin: {},
-    capturedClick: {},
-    browserSize: {x: 1366, y: 768}
+    capturedClick: {}
   }
 }
 
+// Triggers loading map info when component mounts
 componentDidMount() {
   this.props.fetchMapInfo(this.state.canvasId)
 }
 
-
+// If current on main URL, moves to info url
+// Otherwise, it will toggle you back to main URL
 toggleInfo = (event) => {
   event.preventDefault();
   this.props.history.location.pathname === this.state.url
@@ -40,6 +39,7 @@ toggleInfo = (event) => {
     : this.props.history.replace(`${this.state.url}`)
 }
 
+// Locally storing coordinates of click & amount of offset
 handleMapClick = (event) => {
   let x = event.clientX;
   let y = event.clientY;
@@ -50,6 +50,7 @@ handleMapClick = (event) => {
   this.setState({ capturedClick: relCoords })
 }
 
+// Updating url to pin create, pin edit, or main url depending on inputs
 togglePinInput = (pinData = null) => {
   this.setState({currentPin: pinData})
   if (this.props.history.location.pathname !== this.state.url) {
@@ -59,26 +60,35 @@ togglePinInput = (pinData = null) => {
   } else {
     this.props.history.push(`${this.state.url}/pins/new`)
   }
+  this.toggleCursor();
+}
+
+// Turns on/off the selection cursor when triggered
+toggleCursor = () => {
   let map = document.getElementById('root')
   !!this.state.pinInput ? map.style.cursor="default" : map.style.cursor="crosshair";
 }
 
+// Turns on/off controls when triggered
 toggleControls = (event) => {
   event.preventDefault();
   this.setState({pinControls: !this.state.pinControls})
 }
 
+// Dispatches filter based on selected color
 filterByColor = (color) => {
   let data = {type: 'SHOW_PINS_BY_COLOR', criteria: color}
   this.props.setFilter(data);
 }
 
+// Turns on/off color input when triggered
 toggleColorFilter = (event) => {
   event.preventDefault();
   if (this.state.colorFilter) {this.props.setFilter({type: 'SHOW_ALL', criteria: null})}
   this.setState({colorFilter: !this.state.colorFilter})
 }
 
+// Creates a pin with click data when submitted
 handleSubmit = (event, data) => {
   event.preventDefault()
   data.x = this.state.capturedClick.x
@@ -87,6 +97,7 @@ handleSubmit = (event, data) => {
   this.togglePinInput(null)
 }
 
+// Edits a pin with click data when submitted
 handleEdit = (event, data) => {
   event.preventDefault()
   data.x = this.state.capturedClick.x
@@ -95,10 +106,13 @@ handleEdit = (event, data) => {
   this.togglePinInput(null)
 }
 
+// Deletes selected pin when triggered
 deletePin = (id) => {
   this.props.deletePin(this.state.canvasId, id)
 }
 
+// Displays title, info button, background, and toggled controls
+// Leads to PinList component which handles individual pins
   render() {
     return (
       <React.Fragment>
@@ -144,6 +158,7 @@ deletePin = (id) => {
   }
 }
 
+// Helper to filter mapStateToProps based on filter data
 const getVisiblePins = (pins = [], data = {}) => {
   switch (data.type) {
     case 'SHOW_ALL':
@@ -157,6 +172,7 @@ const getVisiblePins = (pins = [], data = {}) => {
   }
 }
 
+// Extracts data from store for component
 const mapStateToProps = (state) => {
   return {
     pins: getVisiblePins(state.pinReducer.pins, state.filterReducer),
@@ -165,6 +181,7 @@ const mapStateToProps = (state) => {
   }
 }
 
+// Functions that can dispatch to store
 const mapDispatchToProps = (dispatch) => ({
     fetchMapInfo: (id) => dispatch(fetchMapInfo(id)),
     createPin: (data, id) => dispatch(createPin(data, id)),
@@ -173,6 +190,5 @@ const mapDispatchToProps = (dispatch) => ({
     setFilter: (data) => dispatch(setFilter(data)),
 })
 
+// withRouter will pass updated match, location, and history props to the wrapped component
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PinContainer));
-
-/* Write what I learned about routing and also putting actions in api.js */

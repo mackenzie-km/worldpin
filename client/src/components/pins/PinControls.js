@@ -1,5 +1,6 @@
 import React from 'react';
 
+// If on, shows add and filter buttons
 const PinControls = (props) => {
   return (
     <div className="pin-controls">

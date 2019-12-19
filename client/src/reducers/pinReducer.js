@@ -1,3 +1,5 @@
+// Changes pins viewed in store after api actions complete
+
 function pinReducer (state = {pins: [], loading: false}, action) {
   switch (action.type) {
     case 'LOADING_MAP':

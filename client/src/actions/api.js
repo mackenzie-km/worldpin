@@ -1,3 +1,24 @@
+// *** Homepage map loading function ***
+// ID submitted ? opens corresponding map : posts the form data
+// Changes url at end
+export function startMap(event, data) {
+    event.preventDefault()
+    if (data.id){
+      window.location.replace(`/maps/${data.id}`)
+    } else {
+      fetch(`/api/maps/`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(data =>  window.location.replace(`/maps/${data.id}`))
+  }
+}
+
 export function fetchMapInfo(id) {
   return (dispatch) => {
     dispatch ({type: 'LOADING_MAP'});

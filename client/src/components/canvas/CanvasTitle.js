@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Displays title of map passed in
 const CanvasTitle = props => {
   return (
     <header className="canvas-title">

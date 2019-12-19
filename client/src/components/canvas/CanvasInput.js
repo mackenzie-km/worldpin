@@ -1,7 +1,7 @@
 import React from 'react';
 
+// For creating a new map canvas
 class CanvasInput extends React.Component {
-
   constructor(props){
     super(props)
     this.state = {
@@ -11,6 +11,7 @@ class CanvasInput extends React.Component {
     }
   }
 
+// Updating internal states
   handleTitle = (event) => {
     this.setState({title: event.target.value})
   }

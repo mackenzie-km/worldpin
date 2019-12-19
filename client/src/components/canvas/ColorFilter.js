@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 
+// Stateful input to select a color
 class ColorFilter extends PureComponent {
 
   handleColor = (event) => {

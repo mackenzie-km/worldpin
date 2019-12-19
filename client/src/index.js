@@ -7,13 +7,18 @@ import './index.css';
 import App from './App';
 import rootReducer from './reducers';
 
+// Using compose per redux documentation to use redux devtools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// Creating Store using our combined reducer and thunk
+// Thunk will allow dispatch to return an object
 const store = createStore(
   rootReducer, composeEnhancers(
     applyMiddleware(thunk)
   ));
-// to apply multiple reducer enhancers, need compose per documentation
 
+
+// Wrapping App in provider to connect to redux store
 ReactDOM.render(
   <Provider store={store}>
     <App />
