@@ -119,14 +119,14 @@ deletePin = (id) => {
         <div className="container">
         <CanvasTitle title={this.props.title} id={this.state.canvasId} />
         <WorldMap url={this.props.url} handleMapClick={this.handleMapClick} />
-          <Route path={`${this.state.url}/pins/new`} render={()=> (
+          <Route path={`${this.state.url}/pins/:id/edit`} render={()=> (
             <PinInput
               currentPin={this.state.currentPin}
               handleSubmit={this.handleSubmit}
               handleEdit={this.handleEdit}
               hide={this.togglePinInput} />
           )} />
-          <Route path={`${this.state.url}/pins/:id/edit`} render={()=> (
+          <Route path={`${this.state.url}/pins/new`} render={()=> (
             <PinInput
               currentPin={this.state.currentPin}
               handleSubmit={this.handleSubmit}

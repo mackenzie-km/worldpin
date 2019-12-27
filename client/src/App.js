@@ -14,13 +14,13 @@ const App = (props) => {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/404" component={ErrorContainer} />
-          <Route path="/maps/new" component={HomeContainer} />
+          <Route exact path="/maps/new" component={HomeContainer} />
           <Route path="/maps/:id" render={(props) => (
             <PinContainer router={props.match} />
           )}/>
-          <Route path="/" component={HomeContainer} />
-          <Redirect from="*" to="/" />
+          <Route exact path="/" component={HomeContainer} />
+          <Route exact path="/404" component={ErrorContainer} />
+          <Redirect from="*" to="/404" />
         </Switch>
       </Router>
     </div>
