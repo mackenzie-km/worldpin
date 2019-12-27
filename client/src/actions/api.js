@@ -1,6 +1,17 @@
+// *** From food-lookup-demo; checks status
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    console.log(response)
+    return response;
+  }
+  const error = new Error(`HTTP Error ${response.statusText}`);
+  error.status = response.statusText;
+  error.response = response;
+  console.log(error);
+  throw error;
+}
+
 // *** Homepage map loading function ***
-// ID submitted ? opens corresponding map : posts the form data
-// Changes url at end
 export function startMap(event, data) {
     event.preventDefault()
     if (data.id){
@@ -14,15 +25,18 @@ export function startMap(event, data) {
         },
         body: JSON.stringify(data)
       })
+      .then(checkStatus)
       .then(res => res.json())
       .then(data =>  window.location.replace(`/maps/${data.id}`))
   }
 }
 
+//*** Loads map information when you drill down on ID
 export function fetchMapInfo(id) {
   return (dispatch) => {
     dispatch ({type: 'LOADING_MAP'});
     fetch(`/api/maps/${id}`)
+    .then(checkStatus)
     .then(res => res.json())
     .then(json => dispatch({type: 'LOAD_PINS', json}))
   }
@@ -39,6 +53,7 @@ export function createPin(data, id) {
       },
       body: JSON.stringify(data)
     })
+    .then(checkStatus)
     .then(res => res.json())
     .then(data => dispatch({type: 'CREATE_PIN', data}));
   }
@@ -54,6 +69,7 @@ export function deletePin(map_id, id){
         'Content-Type': 'application/json'
         }
       })
+    .then(checkStatus)
     .then(res => res.json())
     .then(data => dispatch({type: 'DELETE_PIN', data}));
   }
@@ -70,6 +86,7 @@ export function editPin(data) {
       },
       body: JSON.stringify(data)
     })
+    .then(checkStatus)
     .then(res => res.json())
     .then(data => dispatch({type: 'EDIT_PIN', data}))
   }
