@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import PinContainer from './containers/PinContainer.js';
+import ErrorContainer from './containers/ErrorContainer.js';
 import HomeContainer from './containers/HomeContainer.js';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -13,6 +14,7 @@ const App = (props) => {
     <div className="App">
       <Router>
         <Switch>
+          <Route path="/404" component={ErrorContainer} />
           <Route path="/maps/new" component={HomeContainer} />
           <Route path="/maps/:id" render={(props) => (
             <PinContainer router={props.match} />

@@ -72,6 +72,28 @@ header.canvas-title {
   color: #C6C5B9;
 }
 
+.error404-large {
+  font-size: 40vh;
+  line-height: 40vh;
+  width: inherit;
+  margin: auto;
+  z-index: 100;
+  top: -100vh;
+  position: relative;
+  text-align: center;
+}
+
+.error404-small {
+  font-size: 8vh;
+  line-height: 20vh;
+  width: inherit;
+  margin: auto;
+  z-index: 100;
+  top: -100vh;
+  position: relative;
+  text-align: center;
+}
+
 /************ Links ************/
 
 .App-link {

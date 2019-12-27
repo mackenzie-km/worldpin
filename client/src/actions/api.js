@@ -7,7 +7,7 @@ function checkStatus(response) {
     const error = new Error(`HTTP Error ${response.statusText}`);
     error.status = response.statusText;
     error.response = response;
-    window.location.replace(`/maps`);
+    window.location.replace(`/404`);
     console.log(error);
   }
 }
