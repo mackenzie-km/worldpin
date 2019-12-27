@@ -3,12 +3,13 @@ function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     console.log(response)
     return response;
+  } else {
+    const error = new Error(`HTTP Error ${response.statusText}`);
+    error.status = response.statusText;
+    error.response = response;
+    window.location.replace(`/maps`);
+    console.log(error);
   }
-  const error = new Error(`HTTP Error ${response.statusText}`);
-  error.status = response.statusText;
-  error.response = response;
-  console.log(error);
-  throw error;
 }
 
 // *** Homepage map loading function ***
