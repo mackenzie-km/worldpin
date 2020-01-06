@@ -182,6 +182,7 @@ const mapStateToProps = (state) => {
 }
 
 // Functions that can dispatch to store
+// Look into object destructuring
 const mapDispatchToProps = (dispatch) => ({
     fetchMapInfo: (id) => dispatch(fetchMapInfo(id)),
     createPin: (data, id) => dispatch(createPin(data, id)),

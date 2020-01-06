@@ -94,7 +94,5 @@ export function editPin(data) {
 }
 
 export function setFilter(data){
-  return (dispatch) => {
-    dispatch({type: data.type, criteria: data.criteria})
-  }
+  return {type: data.type, criteria: data.criteria}
 }

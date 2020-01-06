@@ -7,7 +7,7 @@ const PinList = (props = []) => {
     <React.Fragment>
       {(props.pins.length > 0)
         ? props.pins.map((x) =>
-          <Pin key={x.id} canvasId={props.canvasId} info={x} delete={props.delete} togglePinInput={props.togglePinInput} browserSize={props.browserSize} />
+          <Pin key={x.id} toggleLike={props.toggleLike} canvasId={props.canvasId} info={x} delete={props.delete} togglePinInput={props.togglePinInput} browserSize={props.browserSize} />
         )
         : null }
     </React.Fragment>
